@@ -1,0 +1,32 @@
+{
+  "name": "git-gui",
+  "version": "1.0.0",
+  "description": "electron git destop client",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dperrymorrow/git-gui.git"
+  },
+  "keywords": [
+    "git",
+    "gui",
+    "electron",
+    "client"
+  ],
+  "author": "David Morrow",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dperrymorrow/git-gui/issues"
+  },
+  "homepage": "https://github.com/dperrymorrow/git-gui#readme",
+  "dependencies": {
+    "colors": "1.1.2",
+    "nodegit": "0.18.2"
+  },
+  "devDependencies": {
+    "colors": "1.1.2"
+  }
+}
