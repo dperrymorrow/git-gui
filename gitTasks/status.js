@@ -4,10 +4,8 @@ const Git = require('nodegit');
 const path = require('path');
 const colors = require('colors');
 
-function gitStatus(dir) {
+module.exports = function(dir) {
   const gitDir = path.resolve(dir, '.git');
-
-  console.log(gitDir.yellow);
 
   return Git.Repository.open(gitDir).then(repo => {
     return repo
@@ -25,16 +23,8 @@ function gitStatus(dir) {
         console.log('Error'.red, err);
       });
   });
-}
+};
 
 function _filterBy(files, method) {
   return files.filter(file => file[method]()).map(file => file.path());
 }
-
-gitStatus('/Users/david.morrow/builds/useful-shit/')
-  .then(grouped => {
-    console.log(JSON.stringify(grouped, null, 2));
-  })
-  .catch(err => {
-    console.log(err);
-  });
