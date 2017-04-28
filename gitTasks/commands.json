@@ -4,5 +4,6 @@
   "branchCurrent": "git rev-parse --abbrev-ref HEAD",
   "status": "git status --porcelain",
   "log": "git log",
-  "fetch": "git fetch --all"
+  "fetch": "git fetch --all",
+  "show": "git show {0}"
 }

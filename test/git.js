@@ -83,3 +83,10 @@ test('gets log', t => {
     t.is(last.commit, '0bea9fdb58c825b57d2ee8cf69f667af43e768f4');
   });
 });
+
+test.only('gets show', t => {
+  const stub = _stubRun('show');
+  return git.show('3446631ee0e51b15f7f3cc36db143122dc7e7cc5').then(diffs => {
+    _trace(diffs);
+  });
+});

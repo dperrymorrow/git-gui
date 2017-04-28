@@ -14,7 +14,10 @@ module.exports = {
     return cwd;
   },
 
-  run(cmd) {
+  run(cmd, args = []) {
+    args.forEach((arg, index) => {
+      cmd.replace(`{${index}}`, arg);
+    });
     return exec(`cd ${cwd} && ${cmd}`).then(result => {
       console.log(cmd.cyan);
       console.log(result.stdout.yellow);

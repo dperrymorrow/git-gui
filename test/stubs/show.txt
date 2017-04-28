@@ -1,0 +1,327 @@
+commit 515bdb161ddb99312e1e5c1876449cc5171eb511
+Author: dperrymorrow <dperrymorrow@gmail.com>
+Date:   Thu Mar 30 14:33:56 2017 -0700
+
+    new auth flow
+
+diff --git a/app/electron/endPoints.json b/app/electron/endPoints.json
+index 65f2fd4..4b23525 100644
+--- a/app/electron/endPoints.json
++++ b/app/electron/endPoints.json
+@@ -1,22 +1,24 @@
+ {
+   "snap": {
+     "prefix": {
+-      "development": "https://8eq8wowewf.execute-api.us-west-2.amazonaws.com/dev/wrn/snap2",
+-      "production": "https://9oeoqkvsy0.execute-api.us-west-2.amazonaws.com/production/wrn/snap2"
++      "development": "https://services.welocalize.io/",
++      "production": "https://services.welocalize.tools/"
+     },
+-    "claim": "/job/claim",
+-    "gimmie": "/job/gimme",
+-    "bail": "/job/fail",
+-    "finish": "/job/success",
+-    "show": "/job/getById"
++    "claim": "snap/wrn/snap2/job/claim",
++    "gimmie": "snap/wrn/snap2/job/gimme",
++    "bail": "snap/wrn/snap2/job/fail",
++    "finish": "snap/wrn/snap2/job/success",
++    "show": "snap/wrn/snap2/job/getById"
+   },
+
+   "tekmor": {
+     "prefix": {
+-      "development": "https://ln60wfiqs5.execute-api.us-west-2.amazonaws.com/dev",
+-      "production": "https://d1x806nx1h.execute-api.us-west-2.amazonaws.com/production"
++      "development": "https://services.welocalize.io/",
++      "production": "https://services.welocalize.tools/"
+     },
+-    "init": "/auth/init",
+-    "finish": "/auth/finish"
++    "init": "tekmor/auth/init",
++    "finish": "tekmor/auth/finish",
++    "getJWT": "auth/jwt",
++    "redirectUrl": "static-redirect-url"
+   }
+ }
+diff --git a/app/pages/login/googleAddOn.html b/app/pages/login/googleAddOn.html
+deleted file mode 100644
+index 30bbadb..0000000
+--- a/app/pages/login/googleAddOn.html
++++ /dev/null
+@@ -1,28 +0,0 @@
+-
+-<style type="text/css">
+-  #welo-close {
+-    position: fixed;
+-    top: 50px;
+-    right: 20px;
+-    border-radius: 50%;
+-    color: white;
+-    width: 50px;
+-    height: 50px;
+-    background-color: #ff4081;
+-    text-align: center;
+-    line-height: 50px;
+-    font-size: 40px;
+-    box-shadow: 0px 3px 10px #666;
+-    cursor: pointer;
+-    font-weight: normal;
+-  }
+-
+-  #welo-close:hover {
+-    background-color: #ce1d5b;
+-    text-decoration: none;
+-  }
+-</style>
+-
+-<a id="welo-close" onclick="window.close()">
+-  &times;
+-</a>
+\ No newline at end of file
+diff --git a/app/pages/login/index.html b/app/pages/login/index.html
+index 8133e1d..65cb10a 100644
+--- a/app/pages/login/index.html
++++ b/app/pages/login/index.html
+@@ -39,92 +39,57 @@
+         <img src="../../frontend/images/phones-logo.svg" alt="Snap Login">
+       </header>
+
+-      <div class="panel">
++      <div class="panel" id="formTarget">
++        <!-- template goes here -->
++      </div>
++
++      <a class="close" href="#">Cancel and Close</a>
++    </main>
++
++   <script>
+
++      console.groupCollapsed('startup');
++        console.log('API_URLS', window.API_URLS);
++        console.log('ENV', window.ENV);
++      console.groupEnd();
++
++      const action = API_URLS.tekmor.prefix[ENV] + API_URLS.tekmor.init;
++      const redirect = API_URLS.tekmor.prefix[ENV] + API_URLS.tekmor.getJWT;
++
++      const template = `
+         <p>Login by clicking below</p>
+
+-        <form method="post">
+-          <button type="submit" class="btn login-button" disabled="true" data-target="okta">
++        <form method="post" action="${action}">
++
++          <input type="hidden" name="mode" value="app"/>
++          <input type="hidden" name="target" value="okta"/>
++          <input type="hidden" name="redirectUrl" value="${redirect}"/>
++
++          <button type="submit" class="btn login-button">
+             <i class="icon-welocalize"></i>
+             Welocalize
+           </button>
+         </form>
+
+-         <form method="post">
+-          <button type="submit" class="btn login-button" disabled="true" data-target="google">
++        <form method="post" action="${action}">
++
++          <input type="hidden" name="mode" value="app"/>
++          <input type="hidden" name="redirectUrl" value="${redirect}"/>
++          <input type="hidden" name="target" value="google"/>
++
++          <button type="submit" class="btn login-button">
+             <i class="snap-google" style="color:#0077BE;"></i>
+             Google
+           </button>
+         </form>
+-      </div>
+-
+-      <a class="close" href="#">Cancel and Close</a>
+-    </main>
++      `;
+
+-    <script>
+-      (function() {
++      document.getElementById('formTarget').innerHTML = template;
+
+-        console.groupCollapsed('startup');
+-        console.log('API_URLS', window.API_URLS);
+-        console.log('ENV', window.ENV);
+-        console.groupEnd();
+-
+-        const queryParam = window.location.search ? window.location.search.slice(1).split("&") : false;
+-        const $loginBtns = document.querySelectorAll(".login-button");
+-        const $close = document.querySelector(".close");
+-        const keyPairs = {};
+-
+-        // // populate the form destination from the api urls
+-        Array.from(document.querySelectorAll('form')).forEach(form => {
+-          form.setAttribute('action', API_URLS.tekmor.prefix[ENV] + API_URLS.tekmor.init);
+-        });
+-
+-        Array.from($loginBtns).forEach(btn => {
+-
+-          setTimeout(() => {
+-            btn.removeAttribute('disabled');
+-          }, 1000);
+-
+-          btn.addEventListener('click', e => {
+-            btn.classList.add("loading");
+-
+-            e.stopPropagation();
+-            e.preventDefault();
+-
+-            fetch(API_URLS.tekmor.prefix[ENV] + API_URLS.tekmor.init, {
+-              method: 'POST',
+-              redirect: 'follow',
+-              mode: 'cors',
+-              headers: new Headers({
+-                'Content-Type': 'application/json'
+-              }),
+-              body: JSON.stringify({
+-                target: btn.getAttribute('data-target')
+-              })
+-            }).then(response => {
+-              window.location.href = response.url;
+-            });
+-
+-          });
+-        });
+-
+-        $close.addEventListener("click", (e) => {
+-          window.close(true);
+-        });
+-
+-        if (!queryParam) return;
+-        queryParam.forEach((pairs) => {
+-          const pair = pairs.split("=");
+-          keyPairs[pair[0]] = pair[1];
+-        });
+-
+-        if (keyPairs.status) {
+-          console.log(keyPairs);
+-          const errorHTML = `<div class="error-msg">${keyPairs.status} - ${decodeURI(keyPairs.data)}</div>`;
+-          document.querySelector(".panel").insertAdjacentHTML("afterend", errorHTML);
+-        }
+-
+-      })();
++      document.querySelector(".close").addEventListener("click", (e) => {
++        window.close(true);
++      });
+     </script>
++
+   </body>
+ </html>
+diff --git a/app/pages/login/index.js b/app/pages/login/index.js
+index ba6abba..e0404aa 100644
+--- a/app/pages/login/index.js
++++ b/app/pages/login/index.js
+@@ -4,6 +4,9 @@ const querystring = require("querystring");
+ const electron = require("electron");
+ const {BrowserWindow, session} = electron;
+ const defaults = require("./../../electron/window").defaults;
++const routes = require('./../../electron/endPoints.json');
++
++let loginWin;
+
+ function setup(options, params) {
+
+@@ -40,6 +43,7 @@ function setup(options, params) {
+
+   var win = new BrowserWindow(opts);
+   win.loadURL(target);
++  loginWin = win;
+
+   return new Promise(function(resolve, reject) {
+     win.once("ready-to-show", () => {
+diff --git a/app/pages/login/oktaAddOn.html b/app/pages/login/oktaAddOn.html
+deleted file mode 100644
+index 3d5fe6e..0000000
+--- a/app/pages/login/oktaAddOn.html
++++ /dev/null
+@@ -1,15 +0,0 @@
+-
+-<style type="text/css">
+-  #welo-close-btn {
+-    position: absolute;
+-    bottom: 8px;
+-    text-align: center;
+-    display: block;
+-    font-size: 12px;
+-    width: 100%;
+-  }
+-</style>
+-
+-<a href="#" id="welo-close-btn" onclick="window.close()">
+-  Cancel and Close
+-</a>
+diff --git a/app/pages/login/preload.js b/app/pages/login/preload.js
+index b473f70..a22325b 100644
+--- a/app/pages/login/preload.js
++++ b/app/pages/login/preload.js
+@@ -2,7 +2,6 @@
+   const ipc = require('electron').ipcRenderer;
+   const fs = require('fs');
+
+-
+   window.ENV = require('electron').remote.getGlobal('ENV');
+   window.API_URLS = require('./../../electron/endPoints.json');
+
+@@ -11,38 +10,13 @@
+     require('electron').remote.getCurrentWindow().toggleDevTools({detached: true});
+   }
+
+-  if(window.location.href.includes(API_URLS.tekmor.finish)) {
+-
+-    document.addEventListener("DOMContentLoaded", function(event) {
+-      var response = JSON.parse(document.querySelector("pre").textContent);
+-      console.log('the data from the pre', response.Payload);
+-
+-      if (response.StatusCode == 200) {
+-        ipc.send("login:success", JSON.parse(response.Payload));
+-      } else {
+-        window.close();
+-      }
+-    });
+-  }
+-
+-  // inject a damn close button... asshat okta
+-  // okta has jQuery
+-  if (window.location.host === "welocalize.okta.com") {
+-    loadShim('oktaAddOn.html');
+-  } else if (window.location.host === "accounts.google.com") {
+-    loadShim('googleAddOn.html');
+-  }
+
+-  function loadShim(file) {
+-    document.addEventListener("DOMContentLoaded", (event) => {
+-      fs.readFile(`${__dirname}/${file}`, (err, contents) => {
+-        if (err) console.error(err);
+-        document.body.insertAdjacentHTML('beforeend', contents);
+-      });
++  if (window.location.href.includes(API_URLS.tekmor.getJWT)) {
++    document.addEventListener("DOMContentLoaded", event => {
++      document.body.style.display = "none";
++      const JWT = JSON.parse(document.body.textContent);
++      ipc.send("login:success", JWT);
+     });
+   }
+
+-  window.close = function (data) {
+-    ipc.send("login:cancelled", data);
+-  };
+-})();
++}());
+diff --git a/package.json b/package.json
+index b460276..f5c4e74 100644
+--- a/package.json
++++ b/package.json
+@@ -16,6 +16,7 @@
+     "colors": "^1.1.2",
+     "debug": "^2.2.0",
+     "draggabilly": "^2.1.1",
++    "electron": "1.6.2",
+     "electron-css-reload": "^1.0.6",
+     "electron-log": "^1.3.0",
+     "handlebars": "^4.0.5",

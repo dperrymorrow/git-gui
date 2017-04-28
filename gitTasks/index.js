@@ -5,4 +5,5 @@ module.exports = {
   status: require('./status'),
   branch: require('./branch'),
   base: require('./base'),
+  show: require('./show'),
 };
