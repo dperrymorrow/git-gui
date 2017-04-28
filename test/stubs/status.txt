@@ -1,0 +1,12 @@
+M gitTasks/branch.js
+M gitTasks/fetch.js
+M gitTasks/index.js
+M gitTasks/log.js
+D gitTasks/sshKey.js
+M gitTasks/status.js
+M package.json
+D scripts/gitPOC.js
+?? gitTasks/base.js
+?? gitTasks/commands.json
+?? test/
+?? util/

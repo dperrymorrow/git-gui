@@ -1,37 +1,37 @@
 'use strict';
 
-const Git = require('nodegit');
-const path = require('path');
-const colors = require('colors');
+const commands = require('./commands.json');
+const base = require('./base');
+const _ = require('../util/lodash');
+const parse = require('../util/parsing');
 
 module.exports = {
-  list(dir) {
-    return Git.Repository
-      .open(dir)
-      .then(repo => repo.getReferenceNames(Git.Reference.TYPE.LISTALL))
-      .then(refs => {
-        const branches = {
-          local: [],
-          remote: [],
-        };
-
-        refs.forEach(ref => {
-          const branch = {
-            name: ref.split('/').splice(-1)[0],
-            path: ref,
-          };
-          const target = ref.includes('remote')
-            ? branches.remote
-            : branches.local;
-
-          if (['HEAD', 'stash'].includes(branch.name)) return;
-          target.push(branch);
-        });
-
-        return branches;
-      })
+  current() {
+    return base
+      .run(commands.branchCurrent)
+      .then(branchName => branchName.trim())
       .catch(err => {
-        console.error(err);
+        console.log(err);
       });
   },
+
+  remote() {
+    return base.run(commands.branchRemote).then(_parse).catch(err => {
+      console.error(err);
+    });
+  },
+
+  local() {
+    return base.run(commands.branchLocal).then(_parse).catch(err => {
+      console.error(err);
+    });
+  },
 };
+
+function _parse(output) {
+  return _.uniq(parse.toArray(output).map(branch => _getName(branch)));
+}
+
+function _getName(branch) {
+  return _.last(branch.replace('* ', '').split('/')).trim();
+}

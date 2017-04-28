@@ -1,30 +1,30 @@
 'use strict';
 
-const Git = require('nodegit');
-const path = require('path');
-const colors = require('colors');
+const commands = require('./commands.json');
+const base = require('./base');
+const _ = require('../util/lodash');
+const parse = require('../util/parsing');
 
-module.exports = function(dir) {
-  const gitDir = path.resolve(dir, '.git');
-
-  return Git.Repository.open(gitDir).then(repo => {
-    return repo
-      .getStatus()
-      .then(files => {
-        return {
-          renamed: _filterBy(files, 'isRenamed'),
-          isNew: _filterBy(files, 'isNew'),
-          deleted: _filterBy(files, 'isDeleted'),
-          ignored: _filterBy(files, 'isIgnored'),
-          modified: _filterBy(files, 'isModified'),
-        };
-      })
-      .catch(err => {
-        console.log('Error'.red, err);
-      });
-  });
+const codes = {
+  M: 'Modified',
+  D: 'Deleted',
+  '??': 'Untracked',
 };
 
-function _filterBy(files, method) {
-  return files.filter(file => file[method]()).map(file => file.path());
-}
+module.exports = function() {
+  return base
+    .run(commands.status)
+    .then(files => {
+      if (files.includes('working tree clean')) return [];
+      return parse.toArray(files).map(file => {
+        const segs = file.trim().split(' ');
+        return {
+          file: segs[1],
+          status: codes[segs[0]],
+        };
+      });
+    })
+    .catch(err => {
+      console.log('Error'.red, err);
+    });
+};

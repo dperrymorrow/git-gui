@@ -1,0 +1,8 @@
+{
+  "branchRemote": "git branch --remotes",
+  "branchLocal": "git branch --list",
+  "branchCurrent": "git rev-parse --abbrev-ref HEAD",
+  "status": "git status --porcelain",
+  "log": "git log",
+  "fetch": "git fetch --all"
+}
