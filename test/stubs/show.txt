@@ -1,8 +1,4 @@
-commit 515bdb161ddb99312e1e5c1876449cc5171eb511
-Author: dperrymorrow <dperrymorrow@gmail.com>
-Date:   Thu Mar 30 14:33:56 2017 -0700
-
-    new auth flow
+{"commit": "abb8ff83284bcf26f0accca838a899880455b1e1","author":"dperrymorrow <dperrymorrow@gmail.com>","date": "Mon Apr 3 12:08:44 2017 -0700","message": "bump "useful" shit version", "body": "someting with multiple "quotes and returns"}
 
 diff --git a/app/electron/endPoints.json b/app/electron/endPoints.json
 index 65f2fd4..4b23525 100644

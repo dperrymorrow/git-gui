@@ -1,110 +1,42 @@
-commit dfacdc044890a6c626e77a9c3e9318d9f4b018c1
-Author: dperrymorrow <dperrymorrow@gmail.com>
-Date:   Fri Apr 21 12:57:19 2017 -0700
-
-    dead letter activity view
-
-commit 58de0b059b9e8902f110748a42a43847d2ca5b13
-Author: David Petri <david.petri@welocalize.com>
-Date:   Fri Apr 21 12:19:57 2017 -0700
-
-    Add activity sorter
-
-commit 1d01d49506581a7bc18909ae000a642cb7aff02a
-Author: David Petri <david.petri@welocalize.com>
-Date:   Fri Apr 21 12:06:29 2017 -0700
-
-    Add ability to ungroup / regroup translation activities for specific targets
-
-commit aa2c66276c7f21477bf50753e035cb4782f7e467
-Author: David Petri <david.petri@welocalize.com>
-Date:   Fri Apr 21 11:34:30 2017 -0700
-
-    update
-
-commit eb4456e25f71893d5a5d169a3e7eb10288cfac99
-Author: David Petri <david.petri@welocalize.com>
-Date:   Fri Apr 21 11:33:40 2017 -0700
-
-    Add scopign activity header and fix navbar drag
-
-commit e2e7e204410c9997b2081735e2abb9750ba4ad30
-Author: David Petri <david.petri@welocalize.com>
-Date:   Fri Apr 21 10:15:45 2017 -0700
-
-    Update electron-vue-debugger
-
-commit 70478d98358e32e4aaa9278c643de30137d5c716
-Author: David Petri <david.petri@welocalize.com>
-Date:   Fri Apr 21 10:13:24 2017 -0700
-
-    update electron
-
-commit 071642daff2a654b027a395d6d84f34689a69147
-Merge: f2b5569 99ffc79
-Author: David Petri <david.petri@welocalize.com>
-Date:   Fri Apr 21 10:07:08 2017 -0700
-
-    Merge branch 'dev' of ssh://git-codecommit.us-west-2.amazonaws.com/v1/repos/relay-ui into dev
-
-commit f2b556955aee7c490754e3e1915456c027c3d086
-Author: David Petri <david.petri@welocalize.com>
-Date:   Fri Apr 21 10:06:27 2017 -0700
-
-    Add ability to ungroup translation tasks.
-
-commit 99ffc7974cb9025d3190ef152fde309a01770b95
-Author: dperrymorrow <dperrymorrow@gmail.com>
-Date:   Fri Apr 21 10:01:27 2017 -0700
-
-    adding electron-vue-debugger package seperate from useful-shit
-
-commit 0e5982fba8dd404023a907fcff4db929ced8937c
-Author: David Petri <david.petri@welocalize.com>
-Date:   Thu Apr 20 16:48:49 2017 -0700
-
-    Fix a couple bug with unique keying, groupBy, and ungrouping translations
-
-commit f107751f2f7e7774bd7e8f4e8b2d0c073c57c99f
-Merge: 952e75f 88c64dd
-Author: David Petri <david.petri@welocalize.com>
-Date:   Thu Apr 20 16:24:52 2017 -0700
-
-    Merge print styles
-
-commit 952e75f6c51b82009e52dd451fe043a064307d96
-Author: David Petri <david.petri@welocalize.com>
-Date:   Thu Apr 20 16:23:16 2017 -0700
-
-    Add vendor group assignment task
-
-commit 88c64dd07322e9042c27769684d884522398bab8
-Author: dperrymorrow <dperrymorrow@gmail.com>
-Date:   Thu Apr 20 15:19:45 2017 -0700
-
-    using .no-print for hiding in print media
-
-commit ab417d0eab558a680b563f7434a309d7718894e7
-Author: David Petri <david.petri@welocalize.com>
-Date:   Thu Apr 20 10:55:55 2017 -0700
-
-    Remove 'or press tab to skip' text, seems confusing.
-
-commit aa2d83ed9d829d8154d97d6ddb2711e3237a0bbf
-Author: David Petri <david.petri@welocalize.com>
-Date:   Thu Apr 20 10:55:45 2017 -0700
-
-    Add new vendor pre_assign and search routes
-
-commit c4f0f08c55b5fe16c9ffc9b584568724efa73ec5
-Merge: 1b9b6d0 0bea9fd
-Author: David Petri <david.petri@welocalize.com>
-Date:   Wed Apr 19 16:48:39 2017 -0700
-
-    Merge branch 'dev' of ssh://git-codecommit.us-west-2.amazonaws.com/v1/repos/relay-ui into dev
-
-commit 0bea9fdb58c825b57d2ee8cf69f667af43e768f4
-Author: dperrymorrow <dperrymorrow@gmail.com>
-Date:   Wed Apr 19 16:47:14 2017 -0700
-
-    bump useful-shit version
+--
+sha: 1d3c4b7656d265bcf0bdf66ce44cd53da046dc27
+author: dperrymorrow
+email: dperrymorrow@gmail.com
+data: 10 days ago
+subject: >
+adding parsing of sha show
+body:
+--
+sha: a0a8eb49a62b593a0d75da5aeb5f0237a1eb85ad
+author: dperrymorrow
+email: dperrymorrow@gmail.com
+data: 11 days ago
+subject: >
+tests for all new git parsing functions
+body: >
+--
+sha: 7dc8d484c8c9f082ff2d899a19729c913da43bb0
+author: dperrymorrow
+email: dperrymorrow@gmail.com
+data: 12 days ago
+subject: >
+wip
+body: >z
+--
+sha: 8098b283d286ee8399b2d3e8c5d839dd3270f6fd
+author: dperrymorrow
+email: dperrymorrow@gmail.com
+data: 12 days ago
+subject: >
+example git tasks, log and status
+body: >
+--
+sha: c4dd1646b5ce84c077462213bb0e73dcb7804843
+author: David Morrow
+email: dperrymorrow@users.noreply.github.com
+data: 12 days ago
+subject: >
+Initial commit
+body: >
+this is a
+multiline example

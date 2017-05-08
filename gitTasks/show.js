@@ -9,9 +9,7 @@ module.exports = function(sha) {
   return base
     .run(commands.show, [sha])
     .then(results => {
-      const segs = parse.toArray(results, 'diff --git'); // split on the diffs
-      segs.splice(0, 1); // remove the first one
-      return segs.map(_parseFile);
+      return parse(results).split('diff --git').first().asJSON();
     })
     .catch(err => {
       console.log(err);
