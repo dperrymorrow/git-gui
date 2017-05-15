@@ -1,42 +1,129 @@
---
-sha: 1d3c4b7656d265bcf0bdf66ce44cd53da046dc27
-author: dperrymorrow
-email: dperrymorrow@gmail.com
-data: 10 days ago
-subject: >
-adding parsing of sha show
-body:
---
-sha: a0a8eb49a62b593a0d75da5aeb5f0237a1eb85ad
-author: dperrymorrow
-email: dperrymorrow@gmail.com
-data: 11 days ago
-subject: >
-tests for all new git parsing functions
-body: >
---
-sha: 7dc8d484c8c9f082ff2d899a19729c913da43bb0
-author: dperrymorrow
-email: dperrymorrow@gmail.com
-data: 12 days ago
-subject: >
-wip
-body: >z
---
-sha: 8098b283d286ee8399b2d3e8c5d839dd3270f6fd
-author: dperrymorrow
-email: dperrymorrow@gmail.com
-data: 12 days ago
-subject: >
-example git tasks, log and status
-body: >
---
-sha: c4dd1646b5ce84c077462213bb0e73dcb7804843
-author: David Morrow
-email: dperrymorrow@users.noreply.github.com
-data: 12 days ago
-subject: >
-Initial commit
-body: >
-this is a
-multiline example
+[i]
+[l] sha: c4ab4b078257f00448fcb7810eed0fab9899ea2e
+[l] author: Jordan Linxwiler
+[l] email: Jordan.Linxwiler@welocalize.com
+[l] data: 6 days ago
+[l] subject: Merge branch 'localserver' into state_machine
+[l] body: # Conflicts:
+#       README.md
+#       package.json
+#       routes/account/package.json
+#       routes/asset/package.json
+#       routes/assets/package.json
+#       routes/assets/serverless.yml
+#       routes/program/package.json
+#       routes/project/package.json
+#       routes/task/package.json
+#       routes/user/package.json
+#       routes/vendor/package.json
+
+[i]
+[l] sha: 73770014ee290a0d655908d65694d8183f1baf5e
+[l] author: David Petri
+[l] email: david.petri@welocalize.com
+[l] data: 6 days ago
+[l] subject: Merge
+[l] body:
+[i]
+[l] sha: 1c426ebe811fd38f2d68d209aa8976b8af7de1e9
+[l] author: Jordan Linxwiler
+[l] email: Jordan.Linxwiler@welocalize.com
+[l] data: 6 days ago
+[l] subject: Merge branch 'localserver' into dev
+[l] body: # Conflicts:
+#       README.md
+#       package.json
+#       routes/account/package.json
+#       routes/asset/package.json
+#       routes/assets/package.json
+#       routes/assets/serverless.yml
+#       routes/program/package.json
+#       routes/project/package.json
+#       routes/task/package.json
+#       routes/user/package.json
+#       routes/vendor/package.json
+
+[i]
+[l] sha: f899c8257426344fbfc440637894ff5977d05743
+[l] author: Jordan Linxwiler
+[l] email: Jordan.Linxwiler@welocalize.com
+[l] data: 6 days ago
+[l] subject: Fix some requires that I broke
+[l] body:
+[i]
+[l] sha: 4f84786d34dace06355f4cb36b6bc0187c171725
+[l] author: Jordan Linxwiler
+[l] email: Jordan.Linxwiler@welocalize.com
+[l] data: 6 days ago
+[l] subject: Merge branch 'state_machine' of ssh://git-codecommit.us-west-2.amazonaws.com/v1/repos/pantheon-api into state_machine
+[l] body:
+[i]
+[l] sha: 96309a8fa8e15bee2b79c7d02ec11e0ffaabba5e
+[l] author: Jordan Linxwiler
+[l] email: Jordan.Linxwiler@welocalize.com
+[l] data: 6 days ago
+[l] subject: Adding an accounts endpoint to list accounts
+[l] body:
+[i]
+[l] sha: df1960413300620dbe23cc9309410811274e7e3a
+[l] author: Tyler Main
+[l] email: tyler.main@welocalize.com
+[l] data: 6 days ago
+[l] subject: More project routes/tests.
+[l] body:
+[i]
+[l] sha: 90007209d06859fc88e81282d8e887615275cbb8
+[l] author: Tyler Main
+[l] email: tyler.main@welocalize.com
+[l] data: 6 days ago
+[l] subject: Adding client service item tests/handlers/coverage
+[l] body:
+[i]
+[l] sha: 737de4dab47d958e31cee775daae0cddf4068c80
+[l] author: todgru
+[l] email: todgru@gmail.com
+[l] data: 6 days ago
+[l] subject: Merge branch 'state_machine' of ssh://git-codecommit.us-west-2.amazonaws.com/v1/repos/pantheon-api into state_machine
+[l] body:
+[i]
+[l] sha: 58e015d521b48e4c73c88e28c1ff54982bfdc666
+[l] author: todgru
+[l] email: todgru@gmail.com
+[l] data: 6 days ago
+[l] subject: add data to seeds to keep contraints happy
+[l] body:
+[i]
+[l] sha: ccfdd9f11d575bb1cbf8ba051f82f82bf24f27cf
+[l] author: Tyler Main
+[l] email: tyler.main@welocalize.com
+[l] data: 6 days ago
+[l] subject: Adding stub routes for assets. Getting existing route to deploy without blowing up. Adding test script and stubbed tests. Adding coverage script.
+[l] body:
+[i]
+[l] sha: b397aec1bdff37e1f8fdc1edf5a191bd40aca80b
+[l] author: Mario Bogarin
+[l] email: Mario.Bogarin@welocalize.com
+[l] data: 6 days ago
+[l] subject: Local server
+[l] body:
+[i]
+[l] sha: 1a8b64b66aadfdb9bf8811be27b786c26d9511b1
+[l] author: Tyler Main
+[l] email: tyler.main@welocalize.com
+[l] data: 6 days ago
+[l] subject: Adding nyc test coverage.
+[l] body:
+[i]
+[l] sha: 7af2274871c9e044a3e23b034328803b04635221
+[l] author: Tyler Main
+[l] email: tyler.main@welocalize.com
+[l] data: 6 days ago
+[l] subject: Adding index. Adding test todo. Adding test script.
+[l] body:
+[i]
+[l] sha: 08d47bcf2134f10b62a2c8bfeeb82ebd0c290003
+[l] author: Tyler Main
+[l] email: tyler.main@welocalize.com
+[l] data: 6 days ago
+[l] subject: Adding show-accounts-programs route stub.
+[l] body:
