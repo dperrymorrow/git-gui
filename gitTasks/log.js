@@ -8,20 +8,9 @@ const parse = require("../util/parsing");
 module.exports = function() {
   return base
     .run(commands.log)
-    .then(results => {
-      return parse(results).split(commands.entryDilem).arr;
-    })
+    .then(results => parse(results).split(commands.entryDilem).arr)
     .then(entries => {
-      return entries.map(commit => {
-        const obj = {};
-        parse(commit).split(commands.lineDilem).arr.forEach(line => {
-          const keyVal = parse(line).toKeyVal();
-          obj[keyVal.key] = keyVal.val;
-        });
-        return obj;
-      });
+      return entries.map(commit => parse(commit).toObject());
     })
-    .catch(err => {
-      console.log(err);
-    });
+    .catch(console.log);
 };

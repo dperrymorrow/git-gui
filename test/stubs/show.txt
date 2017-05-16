@@ -1,10 +1,11 @@
+[e]
 [l] sha: 126b2acceafa35fa84f05c677e4eb5da28976e00
 [l] author: Jordan Linxwiler
 [l] email: Jordan.Linxwiler@welocalize.com
 [l] data: 2 days ago
 [l] subject: Remove invoke scripts that don’t work anymore
 [l] body: I broke the function names :-( we can create better scripts for these anyways
-
+[e]
 diff --git a/routes/account/package.json b/routes/account/package.json
 index 9f15fad..9b9c815 100644
 --- a/routes/account/package.json
