@@ -22,8 +22,6 @@
   "dependencies": {
     "child-process-promise": "2.2.1",
     "colors": "1.1.2",
-    "js-string-escape": "1.0.1",
-    "js-yaml": "3.8.4",
     "lodash.isempty": "4.4.0",
     "lodash.last": "3.0.0",
     "lodash.uniq": "4.5.0"
@@ -35,7 +33,7 @@
   },
   "ava": {
     "require": [],
-    "failFast": true,
+    "failFast": false,
     "serial": false
   },
   "scripts": {
