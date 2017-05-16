@@ -1,19 +1,19 @@
-"use strict";
+'use strict';
 
-const _ = require("./lodash");
-const commands = require("../gitTasks/commands.json");
-const colors = require("colors");
+const _ = require('./lodash');
+const commands = require('../gitTasks/commands.json');
+const colors = require('colors');
 
 module.exports = function(str) {
   return {
     str: str,
     arr: [],
 
-    findBetween(start, end = "\n") {
+    findBetween(start, end = '\n') {
       try {
         this.str = this.str.split(start)[1].split(end)[0].trim();
       } catch (err) {
-        this.str = "";
+        this.str = '';
       }
       return this;
     },
@@ -23,6 +23,13 @@ module.exports = function(str) {
       this.str = first;
       this.arr = [first];
       return this;
+    },
+
+    toKeyVal() {
+      const segs = this.str.split(':');
+      const key = segs[0];
+      const val = this.str.replace(`${key}:`, '').trim();
+      return { key, val };
     },
 
     map(fn) {
@@ -37,7 +44,7 @@ module.exports = function(str) {
       return this;
     },
 
-    join(char = ",") {
+    join(char = ',') {
       this.str = this.arr.join(char);
       return this;
     },
@@ -54,17 +61,20 @@ module.exports = function(str) {
       return this;
     },
 
-    split(splitOn = "\n") {
-      this.arr = this.str.split(splitOn).filter(seg => !_.isEmpty(seg)).map(seg => seg.trim());
+    split(splitOn = '\n') {
+      this.arr = this.str
+        .split(splitOn)
+        .filter(seg => !_.isEmpty(seg))
+        .map(seg => seg.trim());
       return this;
     },
   };
 };
 
 function _escapeJSON(str) {
-  return str.replace(/\\/g, "\\");
+  return str.replace(/\\/g, '\\');
 }
 
 function _removeLineBreaks(str) {
-  return str.replace(/\n|\r/g, " ");
+  return str.replace(/\n|\r/g, ' ');
 }

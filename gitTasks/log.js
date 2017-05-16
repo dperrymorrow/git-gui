@@ -9,10 +9,16 @@ module.exports = function() {
   return base
     .run(commands.log)
     .then(results => {
-      return parse(results).split(commands.entryDilem).arr.map(commit => {
-        // console.log(parse(commit).asYAML());
-        console.log(parse(commit).split(commands.lineDilem).arr);
-        return commit;
+      return parse(results).split(commands.entryDilem).arr;
+    })
+    .then(entries => {
+      return entries.map(commit => {
+        const obj = {};
+        parse(commit).split(commands.lineDilem).arr.forEach(line => {
+          const keyVal = parse(line).toKeyVal();
+          obj[keyVal.key] = keyVal.val;
+        });
+        return obj;
       });
     })
     .catch(err => {

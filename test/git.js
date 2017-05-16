@@ -12,7 +12,9 @@ _trace(commands);
 function _stubRun(key) {
   if (!stubbed) return;
   const stub = sinon.stub().callsFake(() => {
-    return Promise.resolve(fs.readFileSync(`${__dirname}/stubs/${key}.txt`, "utf8"));
+    return Promise.resolve(
+      fs.readFileSync(`${__dirname}/stubs/${key}.txt`, "utf8")
+    );
   });
   git.base.run = stub;
   return stub;
@@ -65,15 +67,15 @@ test("gets status", t => {
   });
 });
 
-test.only("gets log", t => {
+test("gets log", t => {
   const stub = _stubRun("log");
 
   return git.log().then(commits => {
     const first = commits[0];
 
-    t.is(first.author, "dperrymorrow <dperrymorrow@gmail.com>");
-    t.is(first.commit, "5ec3391ee4ff5002b8c4aafe9cc1c84c3cf60504");
-    t.is(first.date, "Fri Apr 21 10:04:43 2017 -0700");
+    t.is(first.author, "Jordan Linxwiler");
+    t.is(first.sha, "c4ab4b078257f00448fcb7810eed0fab9899ea2e");
+    t.is(first.date, "6 days ago");
   });
 });
 

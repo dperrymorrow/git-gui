@@ -33,7 +33,7 @@
   },
   "ava": {
     "require": [],
-    "failFast": false,
+    "failFast": true,
     "serial": false
   },
   "scripts": {
