@@ -2,7 +2,7 @@
   "name": "git-gui",
   "version": "1.0.0",
   "description": "electron git destop client",
-  "main": "index.js",
+  "main": "app/electron.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dperrymorrow/git-gui.git"
@@ -22,13 +22,17 @@
   "dependencies": {
     "child-process-promise": "2.2.1",
     "colors": "1.1.2",
+    "electron-default-menu": "^1.0.1",
+    "electron-storage": "^1.0.7",
     "lodash.isempty": "4.4.0",
     "lodash.last": "3.0.0",
+    "lodash.throttle": "^4.1.1",
     "lodash.uniq": "4.5.0"
   },
   "devDependencies": {
     "ava": "0.19.1",
     "colors": "1.1.2",
+    "electron": "^1.6.8",
     "sinon": "2.1.0"
   },
   "ava": {
@@ -37,6 +41,7 @@
     "serial": false
   },
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "app": "electron ."
   }
 }

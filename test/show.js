@@ -1,6 +1,6 @@
 "use strict";
 const test = require("ava");
-const git = require("../gitTasks");
+const git = require("../app/gitTasks");
 const { stubWithFile, trace } = require("./helpers");
 
 test("gets show", t => {

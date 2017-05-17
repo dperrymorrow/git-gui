@@ -1,6 +1,6 @@
 "use strict";
 
-const git = require("../../gitTasks");
+const git = require("../../app/gitTasks");
 const sinon = require("sinon");
 const colors = require("colors");
 const fs = require("fs");
