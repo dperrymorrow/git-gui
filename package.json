@@ -24,16 +24,23 @@
     "colors": "1.1.2",
     "electron-default-menu": "^1.0.1",
     "electron-storage": "^1.0.7",
-    "lodash.isempty": "4.4.0",
+    "lodash.isempty": "^4.4.0",
     "lodash.last": "3.0.0",
     "lodash.throttle": "^4.1.1",
-    "lodash.uniq": "4.5.0"
+    "lodash.uniq": "4.5.0",
+    "vue": "^2.3.3",
+    "vuex": "^2.3.1"
   },
   "devDependencies": {
     "ava": "0.19.1",
     "colors": "1.1.2",
     "electron": "^1.6.8",
-    "sinon": "2.1.0"
+    "electron-css-reload": "^1.0.8",
+    "electron-vue-debugger": "^1.0.3",
+    "flexboxgrid": "^6.3.1",
+    "onchange": "^3.2.1",
+    "sinon": "2.1.0",
+    "stylus": "^0.54.5"
   },
   "ava": {
     "require": [],
@@ -42,6 +49,10 @@
   },
   "scripts": {
     "test": "ava",
-    "app": "electron ."
+    "stylus": "stylus --include-css -I node_modules app/workspace/stylus -o app/workspace/_compiled",
+    "stylus:watch": "npm run stylus -- -w",
+    "start:dev": "npm run stylus && NODE_ENV=development electron .",
+    "start:prod": "npm run stylus && NODE_ENV=production electron .",
+    "watch": "onchange 'app/**/*.js' 'app/**/*.html' 'app/**/*.json' -i -- npm run start:dev"
   }
 }

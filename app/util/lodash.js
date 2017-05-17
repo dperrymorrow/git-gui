@@ -5,4 +5,5 @@ module.exports = {
   last: require("lodash.last"),
   uniq: require("lodash.uniq"),
   throttle: require("lodash.throttle"),
+  isEmpty: require("lodash.isempty"),
 };

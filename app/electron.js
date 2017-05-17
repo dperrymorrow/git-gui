@@ -28,7 +28,7 @@ app.on("ready", () => {
       darkTheme: true,
       webPreferences: {
         nodeIntegration: false,
-        preload: `${__dirname}/electron_preload.js`,
+        preload: `${__dirname}/workspace/js/index.js`,
         devTools: true,
         textAreasAreResizable: false,
         scrollBounce: true,

@@ -10,6 +10,7 @@ const DEFAULT = {
     width: 1324,
     height: 920,
   },
+  activeRepo: null,
   repos: [],
 };
 
