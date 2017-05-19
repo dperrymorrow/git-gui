@@ -7,15 +7,19 @@ const parse = require("../util/parsing");
 
 module.exports = {
   current() {
-    return base.run(commands.branchCurrent).then(branchName => branchName.trim()).catch(console.log);
+    return base.run(commands.branchCurrent).then(branchName => branchName.trim()).catch(console.error);
+  },
+
+  checkout(branch) {
+    return base.run(commands.branchCheckout, [branch]).catch(console.error);
   },
 
   remote() {
-    return base.run(commands.branchRemote).then(_parse).catch(console.log);
+    return base.run(commands.branchRemote).then(_parse).catch(console.error);
   },
 
   local() {
-    return base.run(commands.branchLocal).then(_parse).catch(console.log);
+    return base.run(commands.branchLocal).then(_parse).catch(console.error);
   },
 };
 
@@ -24,5 +28,5 @@ function _parse(output) {
 }
 
 function _getName(branch) {
-  return _.last(branch.replace("* ", "").split("/"));
+  return branch.replace("* ", "");
 }

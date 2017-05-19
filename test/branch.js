@@ -16,8 +16,8 @@ test("gets remote branches", t => {
 
   return git.branch.remote().then(branches => {
     t.true(Array.isArray(branches));
-    t.true(branches.includes("master"));
-    t.true(branches.includes("gh-pages"));
+    t.true(branches.includes("origin/master"));
+    t.true(branches.includes("origin/gh-pages"));
   });
 });
 

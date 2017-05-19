@@ -11,12 +11,11 @@ module.exports = {
             {{ repo.name }}
           </a>
           <span v-if="repo.path == $store.state.activeRepo">
-            {{ $store.state.currentBranch }}
-            <select>
+            <select @input="changeBranch" v-model="currentBranch" :disabled="$store.getters.isDirty">
               <option disabled="disabled">-- local --</option>
-              <option v-for="branch in $store.state.localBranches">{{branch}}</option>
+              <option v-for="branch in $store.state.localBranches" :value="branch">{{branch}}</option>
               <option disabled="disabled">-- remote --</option>
-              <option v-for="branch in $store.state.remoteBranches">{{branch}}</option>
+              <option v-for="branch in $store.state.remoteBranches" :value="branch">{{branch}}</option>
             </select>
           </span>
           <a v-else @click.prevent="removeRepo(repo.path)">x</a>
@@ -34,6 +33,12 @@ module.exports = {
     return {};
   },
 
+  computed: {
+    currentBranch() {
+      return this.$store.state.currentBranch;
+    },
+  },
+
   methods: {
     setActive(path) {
       this.$store.dispatch("changeRepo", path);
@@ -41,6 +46,10 @@ module.exports = {
 
     removeRepo(path) {
       this.$store.commit("removeRepo", path);
+    },
+
+    changeBranch(event) {
+      this.$store.dispatch("changeBranch", event.currentTarget.value);
     },
 
     addRepo() {

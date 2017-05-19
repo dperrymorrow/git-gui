@@ -16,7 +16,7 @@ module.exports = {
 
   run(cmd, args = []) {
     args.forEach((arg, index) => {
-      cmd.replace(`{${index}}`, arg);
+      cmd = cmd.replace(`{${index}}`, arg);
     });
 
     return exec(`cd ${cwd} && ${cmd}`).then(result => {

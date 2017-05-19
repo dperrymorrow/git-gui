@@ -5,22 +5,32 @@ const { dialog } = require("electron").remote;
 module.exports = {
   template: `
     <div>
-      <span v-if="hasChanges">Clean, no changes...</span>
-      <pre v-else>{{ $store.state.status }}</pre>
+      <div v-if="$store.getters.isDirty">
+        <input type="text" placeholder="subject of your commit" v-bind="subject"/>
+        <input type="text" placeholder="optional: body of your commit" v-bind="body"/>
+        <button @click.prevent="commit">Commit</button>
+      </div>
+
+      <pre v-if="$store.getters.isDirty">{{ $store.state.status }}</pre>
+      <span v-else>Clean, no changes...</span>
+
     </div>
   `,
 
   name: "status",
 
-  computed: {
-    hasChanges() {
-      return Object.keys(this.$store.state.status).length > 0;
-    },
-  },
-
   data() {
     return {
-      action: "gitStatus",
+      subject: "",
+      body: "",
     };
+  },
+
+  methods: {
+    commit() {
+      this.$store.dispatch("addAll").then(() => {
+        return this.$store.dispatch("commit", [this.subject, this.body]);
+      });
+    },
   },
 };

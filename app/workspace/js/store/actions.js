@@ -18,11 +18,22 @@ module.exports = {
   changeRepo(context, path) {
     context.commit("setActiveRepo", path);
     git.base.dir = path;
-    return _updateRepos(context.state.repos, context.state.activeRepo)
-      .then(() => context.dispatch("gitBranches"))
-      .then(() => context.dispatch("gitStatus"))
-      .then(() => context.dispatch("gitLog"))
-      .catch(console.error);
+    return context.dispatch("refresh");
+  },
+
+  changeBranch(context, branch) {
+    context.commit("setCurrentBranch", branch);
+    return git.branch.checkout(branch).then(() => {
+      return context.dispatch("refresh");
+    });
+  },
+
+  addAll(context) {
+    return git.addAll();
+  },
+
+  commit(context, args) {
+    return git.commit(args).then(() => context.dispatch("gitLog")).then(() => context.dispatch("gitStatus"));
   },
 
   gitBranches(context) {
@@ -40,6 +51,14 @@ module.exports = {
         context.commit("setRemoteBranches", remotes);
         return remotes;
       });
+  },
+
+  refresh(context) {
+    return _updateRepos(context.state.repos, context.state.activeRepo)
+      .then(() => context.dispatch("gitBranches"))
+      .then(() => context.dispatch("gitStatus"))
+      .then(() => context.dispatch("gitLog"))
+      .catch(console.error);
   },
 
   gitStatus(context) {
