@@ -16,4 +16,11 @@ module.exports = {
   addAll() {
     return base.run(commands.addAll).catch(err => Promise.reject(err));
   },
+  push() {
+    return base.run(commands.push).catch(err => Promise.reject(err));
+  },
+
+  pull() {
+    return base.run(commands.pull).catch(err => Promise.reject(err));
+  },
 };

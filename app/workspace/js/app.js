@@ -23,10 +23,12 @@ function start(el) {
         repos: require("./components/repos"),
         status: require("./components/status"),
         errors: require("./components/errors"),
+        "task-bar": require("./components/taskBar"),
       },
 
       template: `
         <div id="app-root">
+          <task-bar></task-bar>
           <errors></errors>
           <repos></repos>
           <status></status>
