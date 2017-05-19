@@ -43,7 +43,11 @@ module.exports = {
       })
       .then(remotes => {
         context.commit("setRemoteBranches", remotes);
-        return remotes;
+        return git.branch.default();
+      })
+      .then(defaultBranch => {
+        context.commit("setDefaultBranch", defaultBranch);
+        return defaultBranch;
       })
       .catch(err => {
         context.commit("addError", err);

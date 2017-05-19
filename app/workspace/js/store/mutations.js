@@ -6,7 +6,6 @@ module.exports = {
   setStatus(state, status) {
     state.status = status;
   },
-
   setLog(state, log) {
     state.log = log;
   },
@@ -15,20 +14,21 @@ module.exports = {
   setCurrentBranch(state, branch) {
     state.currentBranch = branch;
   },
-
   setRemoteBranches(state, branches) {
     state.remoteBranches = branches;
   },
   setLocalBranches(state, branches) {
     state.localBranches = branches;
   },
-
-  // errors
-
-  addError(state, error) {
-    state.errors.push(error);
+  setDefaultBranch(state, branch) {
+    state.defaultBranch = branch;
   },
 
+  // errors
+  addError(state, error) {
+    console.error(error);
+    state.errors.push(error);
+  },
   clearErrors(state) {
     state.errors = [];
   },
@@ -37,7 +37,6 @@ module.exports = {
   setActiveRepo(state, path) {
     state.activeRepo = path;
   },
-
   addRepo(state, path) {
     state.repos.push({ path, name: _.last(path.split("/")) });
   },

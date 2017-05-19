@@ -12,6 +12,8 @@ module.exports = {
           </a>
           <span v-if="repo.path == $store.state.activeRepo">
             <select @input="changeBranch" v-model="currentBranch" :disabled="$store.getters.isDirty">
+              <option disabled="disabled">-- default --</option>
+              <option :value="$store.state.defaultBranch">{{$store.state.defaultBranch}}</option>
               <option disabled="disabled">-- local --</option>
               <option v-for="branch in $store.state.localBranches" :value="branch">{{branch}}</option>
               <option disabled="disabled">-- remote --</option>

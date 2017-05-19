@@ -22,6 +22,16 @@ module.exports = {
     return base.run(commands.branchRemote).then(_parse).catch(err => Promise.reject(err));
   },
 
+  default() {
+    return base
+      .run(commands.branchRemote)
+      .then(remotes => {
+        const head = parse(remotes).split().arr.find(remote => remote.includes("HEAD"));
+        return head ? _getName(head) : null;
+      })
+      .catch(err => Promise.reject(err));
+  },
+
   local() {
     return base.run(commands.branchLocal).then(_parse).catch(err => Promise.reject(err));
   },
@@ -32,5 +42,5 @@ function _parse(output) {
 }
 
 function _getName(branch) {
-  return branch.replace("* ", "");
+  return _.last(branch.replace("* ", "").split("/"));
 }

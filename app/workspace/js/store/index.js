@@ -16,6 +16,7 @@ function init() {
         log: [],
         errors: [],
         currentBranch: null,
+        defaultBranch: null,
         remoteBranches: [],
         localBranches: [],
       },

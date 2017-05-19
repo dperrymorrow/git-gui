@@ -27,6 +27,7 @@ module.exports = {
     createBranch() {
       if (!_.isEmpty(this.branchName)) {
         this.$store.dispatch("createBranch", this.branchName);
+        this.branchName = "";
       }
     },
   },
