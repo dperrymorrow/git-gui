@@ -1,8 +1,8 @@
 "use strict";
 
-const _ = require("../../../util/lodash");
-const git = require("../../../gitTasks");
-const storage = require("../../../storage");
+const _ = require(`${ROOT}/util/lodash`);
+const git = require(`${ROOT}/gitTasks`);
+const storage = require(`${ROOT}/storage`);
 
 module.exports = {
   gitLog(context) {
@@ -19,11 +19,26 @@ module.exports = {
     context.commit("setActiveRepo", path);
     git.base.dir = path;
     return _updateRepos(context.state.repos, context.state.activeRepo)
-      .then(() => {
-        return context.dispatch("gitStatus");
+      .then(() => context.dispatch("gitBranches"))
+      .then(() => context.dispatch("gitStatus"))
+      .then(() => context.dispatch("gitLog"))
+      .catch(console.error);
+  },
+
+  gitBranches(context) {
+    return git.branch
+      .current()
+      .then(curBranch => {
+        context.commit("setCurrentBranch", curBranch);
+        return git.branch.local();
       })
-      .then(() => {
-        return context.dispatch("gitLog");
+      .then(locals => {
+        context.commit("setLocalBranches", locals);
+        return git.branch.remote();
+      })
+      .then(remotes => {
+        context.commit("setRemoteBranches", remotes);
+        return remotes;
       });
   },
 

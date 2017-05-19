@@ -1,32 +1,37 @@
 "use strict";
 
-const storage = require("../../../storage");
-const _ = require("../../../util/lodash");
-const git = require("../../../gitTasks");
+const storage = require(`${ROOT}/storage`);
+const _ = require(`${ROOT}/util/lodash`);
+const git = require(`${ROOT}/gitTasks`);
 
 function init() {
   return storage.loadData().then(data => {
     if (!_.isEmpty(data.repos) && !data.activeRepo) data.activeRepo = data.repos[0];
-    if (data.activeRepo) git.base.dir = data.activeRepo;
 
-    return new Vuex.Store({
+    const store = new Vuex.Store({
       state: {
-        activeRepo: data.activeRepo,
+        activeRepo: null,
         repos: data.repos,
         status: {},
         log: [],
+        currentBranch: null,
+        remoteBranches: [],
+        localBranches: [],
       },
 
       strict: window.ENV == "development",
 
       modules: {},
-
-      getters: {},
-
+      getters: require("./getters"),
       actions: require("./actions"),
-
       mutations: require("./mutations"),
     });
+
+    if (data.activeRepo) {
+      store.dispatch("changeRepo", data.activeRepo);
+    }
+
+    return store;
   });
 }
 

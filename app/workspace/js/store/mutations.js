@@ -1,6 +1,6 @@
 "use strict";
 
-const _ = require("../../../util/lodash");
+const _ = require(`${ROOT}/util/lodash`);
 
 module.exports = {
   addRepo(state, path) {
@@ -17,5 +17,21 @@ module.exports = {
 
   setActiveRepo(state, path) {
     state.activeRepo = path;
+  },
+
+  setCurrentBranch(state, branch) {
+    state.currentBranch = branch;
+  },
+
+  setRemoteBranches(state, branches) {
+    state.remoteBranches = branches;
+  },
+
+  removeRepo(state, path) {
+    state.repos = state.repos.filter(repo => repo.path != path);
+  },
+
+  setLocalBranches(state, branches) {
+    state.localBranches = branches;
   },
 };
