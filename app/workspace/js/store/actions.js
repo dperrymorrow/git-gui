@@ -53,6 +53,7 @@ module.exports = {
   createBranch(context, branch) {
     return git.branch
       .create(branch)
+      .then(() => context.dispatch("changeBranch", branch))
       .then(() => context.dispatch("refresh"))
       .catch(err => context.commit("addError", err));
   },
