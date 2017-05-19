@@ -9,8 +9,8 @@ module.exports = {
   branch: require("./branch"),
   base,
   show: require("./show"),
-  commit(subject, body = "") {
-    return base.run(commands.commit, [subject, body]).catch(console.error);
+  commit(args) {
+    return base.run(commands.commit, [args]).catch(console.error);
   },
   addAll() {
     return base.run(commands.addAll).catch(console.error);
