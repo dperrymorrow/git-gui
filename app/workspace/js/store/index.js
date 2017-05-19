@@ -14,6 +14,7 @@ function init() {
         activeRepo: data.activeRepo,
         repos: data.repos,
         status: {},
+        log: [],
       },
 
       strict: window.ENV == "development",
@@ -22,45 +23,10 @@ function init() {
 
       getters: {},
 
-      actions: {
-        gitStatus(context) {
-          return git
-            .status()
-            .then(status => {
-              console.log(status);
-              context.commit("setStatus", status);
-              return status;
-            })
-            .catch(console.error);
-        },
-      },
+      actions: require("./actions"),
 
-      mutations: {
-        addRepo(state, path) {
-          state.repos.push({ path, name: _.last(path.split("/")) });
-          _updateRepos(state.repos, state.activeRepo);
-        },
-
-        setStatus(state, status) {
-          state.status = status;
-        },
-
-        setActiveRepo(state, path) {
-          state.activeRepo = path;
-          git.base.dir = path;
-          _updateRepos(state.repos, state.activeRepo);
-        },
-      },
+      mutations: require("./mutations"),
     });
-  });
-}
-
-function _updateRepos(repos, activeRepo) {
-  repos = JSON.parse(JSON.stringify(repos));
-  return storage.loadData().then(data => {
-    data.repos = repos;
-    data.activeRepo = activeRepo;
-    return storage.saveData(data);
   });
 }
 

@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const colors = require('colors');
+const colors = require("colors");
 
 let cwd;
-const exec = require('child-process-promise').exec;
+const exec = require("child-process-promise").exec;
 
 module.exports = {
   set dir(_dir) {
@@ -19,9 +19,7 @@ module.exports = {
       cmd.replace(`{${index}}`, arg);
     });
 
-    console.log(cmd.cyan);
     return exec(`cd ${cwd} && ${cmd}`).then(result => {
-      console.log(result.stdout.yellow);
       return result.stdout;
     });
   },

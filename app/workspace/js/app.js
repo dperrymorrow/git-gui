@@ -19,6 +19,7 @@ function start(el) {
       },
 
       components: {
+        log: require("./components/log"),
         repos: require("./components/repos"),
         status: require("./components/status"),
       },
@@ -27,6 +28,7 @@ function start(el) {
         <div id="app-root">
           <repos></repos>
           <status></status>
+          <log></log>
           <debugger :keepAlive="false" :components="$children" v-if="isDebug"></debugger>
         </div>
       `,

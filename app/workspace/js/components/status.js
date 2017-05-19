@@ -5,40 +5,22 @@ const { dialog } = require("electron").remote;
 module.exports = {
   template: `
     <div>
-      <pre>{{ $store.state.status }}</pre>
+      <span v-if="hasChanges">Clean, no changes...</span>
+      <pre v-else>{{ $store.state.status }}</pre>
     </div>
   `,
 
   name: "status",
 
+  computed: {
+    hasChanges() {
+      return Object.keys(this.$store.state.status).length > 0;
+    },
+  },
+
   data() {
     return {
-      loading: false,
+      action: "gitStatus",
     };
-  },
-
-  watch: {
-    activeRepo() {
-      this.reload();
-    },
-  },
-
-  created() {
-    this.reload();
-  },
-
-  computed: {
-    activeRepo() {
-      return this.$store.state.activeRepo;
-    },
-  },
-
-  methods: {
-    reload() {
-      this.loading = true;
-      this.$store.dispatch("gitStatus").then(status => {
-        this.loading = false;
-      });
-    },
   },
 };

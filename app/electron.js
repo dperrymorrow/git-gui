@@ -15,8 +15,8 @@ app.on("ready", () => {
       height: data.window.height,
       x: data.window.x,
       y: data.window.y,
-      minWidth: 1024,
-      minHeight: 720,
+      // minWidth: 1024,
+      // minHeight: 720,
       title: "Git Gui",
       show: true,
       type: "textured",
@@ -50,8 +50,7 @@ app.on("ready", () => {
     const winMoved = _.throttle(() => {
       if (win) {
         const bounds = win.getBounds();
-        data.window.x = bounds.x;
-        data.window.y = bounds.y;
+        data.window = win.getBounds();
         storage.saveData(data);
       }
     }, 250);

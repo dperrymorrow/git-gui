@@ -26,13 +26,14 @@ module.exports = {
 
   methods: {
     setActive(path) {
-      this.$store.commit("setActiveRepo", path);
+      this.$store.dispatch("changeRepo", path);
     },
 
     addRepo() {
       dialog.showOpenDialog({ buttonLabel: "Choose Repository", properties: ["openDirectory"] }, dirs => {
         if (!dirs) return;
         this.$store.commit("addRepo", dirs[0]);
+        this.$store.dispatch("changeRepo", dirs[0]);
       });
     },
   },
