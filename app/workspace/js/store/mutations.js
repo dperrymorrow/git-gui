@@ -3,10 +3,6 @@
 const _ = require(`${ROOT}/util/lodash`);
 
 module.exports = {
-  addRepo(state, path) {
-    state.repos.push({ path, name: _.last(path.split("/")) });
-  },
-
   setStatus(state, status) {
     state.status = status;
   },
@@ -15,10 +11,7 @@ module.exports = {
     state.log = log;
   },
 
-  setActiveRepo(state, path) {
-    state.activeRepo = path;
-  },
-
+  // branches
   setCurrentBranch(state, branch) {
     state.currentBranch = branch;
   },
@@ -26,12 +19,29 @@ module.exports = {
   setRemoteBranches(state, branches) {
     state.remoteBranches = branches;
   },
-
-  removeRepo(state, path) {
-    state.repos = state.repos.filter(repo => repo.path != path);
-  },
-
   setLocalBranches(state, branches) {
     state.localBranches = branches;
+  },
+
+  // errors
+
+  addError(state, error) {
+    state.errors.push(error);
+  },
+
+  clearErrors(state) {
+    state.errors = [];
+  },
+
+  // repos
+  setActiveRepo(state, path) {
+    state.activeRepo = path;
+  },
+
+  addRepo(state, path) {
+    state.repos.push({ path, name: _.last(path.split("/")) });
+  },
+  removeRepo(state, path) {
+    state.repos = state.repos.filter(repo => repo.path != path);
   },
 };

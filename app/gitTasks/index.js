@@ -9,10 +9,11 @@ module.exports = {
   status: require("./status"),
   branch: require("./branch"),
   show: require("./show"),
+
   commit(args) {
-    return base.run(commands.commit, args).catch(console.error);
+    return base.run(commands.commit, args).catch(err => Promise.reject(err));
   },
   addAll() {
-    return base.run(commands.addAll).catch(console.error);
+    return base.run(commands.addAll).catch(err => Promise.reject(err));
   },
 };

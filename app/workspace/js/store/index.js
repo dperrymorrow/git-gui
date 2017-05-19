@@ -14,6 +14,7 @@ function init() {
         repos: data.repos,
         status: {},
         log: [],
+        errors: [],
         currentBranch: null,
         remoteBranches: [],
         localBranches: [],

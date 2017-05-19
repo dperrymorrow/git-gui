@@ -7,19 +7,19 @@ const parse = require("../util/parsing");
 
 module.exports = {
   current() {
-    return base.run(commands.branchCurrent).then(branchName => branchName.trim()).catch(console.error);
+    return base.run(commands.branchCurrent).then(branchName => branchName.trim()).catch(err => Promise.reject(err));
   },
 
   checkout(branch) {
-    return base.run(commands.branchCheckout, [branch]).catch(console.error);
+    return base.run(commands.branchCheckout, [branch]).catch(err => Promise.reject(err));
   },
 
   remote() {
-    return base.run(commands.branchRemote).then(_parse).catch(console.error);
+    return base.run(commands.branchRemote).then(_parse).catch(err => Promise.reject(err));
   },
 
   local() {
-    return base.run(commands.branchLocal).then(_parse).catch(console.error);
+    return base.run(commands.branchLocal).then(_parse).catch(err => Promise.reject(err));
   },
 };
 

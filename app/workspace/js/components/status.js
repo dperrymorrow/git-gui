@@ -7,7 +7,7 @@ module.exports = {
     <div>
       <div v-if="$store.getters.isDirty">
         <input type="text" placeholder="subject of your commit" v-model="subject"/>
-        <input type="text" placeholder="optional: body of your commit" v-model="body"/>
+        <textarea placeholder="optional: body of your commit" v-model="body"/></textarea>
         <button @click.prevent="commit">Commit</button>
       </div>
 

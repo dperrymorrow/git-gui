@@ -22,10 +22,12 @@ function start(el) {
         log: require("./components/log"),
         repos: require("./components/repos"),
         status: require("./components/status"),
+        errors: require("./components/errors"),
       },
 
       template: `
         <div id="app-root">
+          <errors></errors>
           <repos></repos>
           <status></status>
           <log></log>

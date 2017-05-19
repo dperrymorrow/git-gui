@@ -12,7 +12,9 @@ module.exports = {
         context.commit("setLog", log);
         return log;
       })
-      .catch(console.error);
+      .catch(err => {
+        context.commit("addError", err);
+      });
   },
 
   changeRepo(context, path) {
@@ -23,9 +25,14 @@ module.exports = {
 
   changeBranch(context, branch) {
     context.commit("setCurrentBranch", branch);
-    return git.branch.checkout(branch).then(() => {
-      return context.dispatch("refresh");
-    });
+    return git.branch
+      .checkout(branch)
+      .then(() => {
+        return context.dispatch("refresh");
+      })
+      .catch(err => {
+        context.commit("addError", err);
+      });
   },
 
   addAll(context) {
@@ -33,7 +40,13 @@ module.exports = {
   },
 
   commit(context, args) {
-    return git.commit(args).then(() => context.dispatch("gitLog")).then(() => context.dispatch("gitStatus"));
+    return git
+      .commit(args)
+      .then(() => context.dispatch("gitLog"))
+      .then(() => context.dispatch("gitStatus"))
+      .catch(err => {
+        context.commit("addError", err);
+      });
   },
 
   gitBranches(context) {
@@ -50,6 +63,9 @@ module.exports = {
       .then(remotes => {
         context.commit("setRemoteBranches", remotes);
         return remotes;
+      })
+      .catch(err => {
+        context.commit("addError", err);
       });
   },
 
@@ -58,7 +74,9 @@ module.exports = {
       .then(() => context.dispatch("gitBranches"))
       .then(() => context.dispatch("gitStatus"))
       .then(() => context.dispatch("gitLog"))
-      .catch(console.error);
+      .catch(err => {
+        context.commit("addError", err);
+      });
   },
 
   gitStatus(context) {
@@ -68,7 +86,9 @@ module.exports = {
         context.commit("setStatus", status);
         return status;
       })
-      .catch(console.error);
+      .catch(err => {
+        context.commit("addError", err);
+      });
   },
 };
 
