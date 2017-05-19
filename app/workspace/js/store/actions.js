@@ -50,11 +50,20 @@ module.exports = {
       });
   },
 
+  createBranch(context, branch) {
+    return git.branch
+      .create(branch)
+      .then(() => context.dispatch("refresh"))
+      .catch(err => context.commit("addError", err));
+  },
+
   changeRepo(context, path) {
     context.commit("setActiveRepo", path);
     git.base.dir = path;
     return context.dispatch("refresh");
   },
+
+  // commits and remote actions
 
   addAll(context) {
     return git.addAll();

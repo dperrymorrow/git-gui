@@ -14,6 +14,10 @@ module.exports = {
     return base.run(commands.branchCheckout, [branch]).catch(err => Promise.reject(err));
   },
 
+  create(branch) {
+    return base.run(commands.branchCreate, [branch]).catch(err => Promise.reject(err));
+  },
+
   remote() {
     return base.run(commands.branchRemote).then(_parse).catch(err => Promise.reject(err));
   },

@@ -8,6 +8,7 @@ module.exports = {
   branchLocal: "git branch --list",
   branchCurrent: "git rev-parse --abbrev-ref HEAD",
   branchCheckout: "git checkout {0}",
+  branchCreate: "git checkout -b {0}",
   addAll: "git add -A",
   push: "git push",
   pull: "git pull",
