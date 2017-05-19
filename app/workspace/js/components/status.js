@@ -30,6 +30,7 @@ module.exports = {
     commit() {
       this.$store.dispatch("addAll").then(() => {
         return this.$store.dispatch("commit", [this.subject, this.body]);
+        this.subject = this.body = "";
       });
     },
   },
