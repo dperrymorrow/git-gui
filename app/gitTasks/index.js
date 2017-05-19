@@ -10,7 +10,7 @@ module.exports = {
   branch: require("./branch"),
   show: require("./show"),
   commit(args) {
-    return base.run(commands.commit, [args]).catch(console.error);
+    return base.run(commands.commit, args).catch(console.error);
   },
   addAll() {
     return base.run(commands.addAll).catch(console.error);

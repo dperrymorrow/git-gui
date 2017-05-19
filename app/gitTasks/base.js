@@ -14,10 +14,16 @@ module.exports = {
     return cwd;
   },
 
-  run(cmd, args = []) {
+  run(cmd, args = [], dryRun = false) {
     args.forEach((arg, index) => {
       cmd = cmd.replace(`{${index}}`, arg);
     });
+
+    if (dryRun) {
+      console.log(args);
+      console.log(cmd);
+      return Promise.resolve(cmd);
+    }
 
     return exec(`cd ${cwd} && ${cmd}`).then(result => {
       return result.stdout;
