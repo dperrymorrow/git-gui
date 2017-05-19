@@ -15,7 +15,7 @@ module.exports = {
   },
 
   create(branch) {
-    return base.run(commands.branchCreate, [branch]).catch(err => Promise.reject(err));
+    return base.run(commands.branchCreate, [branch], true).catch(err => Promise.reject(err));
   },
 
   remote() {
