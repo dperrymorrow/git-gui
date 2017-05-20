@@ -38,7 +38,7 @@ module.exports = {
 };
 
 function _parse(output) {
-  return _.uniq(parse(output).split().arr).map(_getName);
+  return _.uniq(parse(output).split().arr.map(_getName));
 }
 
 function _getName(branch) {

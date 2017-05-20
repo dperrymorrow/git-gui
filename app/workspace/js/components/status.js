@@ -33,10 +33,14 @@ module.exports = {
 
   methods: {
     commit() {
-      this.$store.dispatch("addAll").then(() => {
-        return this.$store.dispatch("commit", [this.subject, this.body]);
-        this.subject = this.body = "";
-      });
+      this.$store
+        .dispatch("addAll")
+        .then(() => {
+          return this.$store.dispatch("commit", [this.subject, this.body]);
+        })
+        .then(() => {
+          this.subject = this.body = "";
+        });
     },
   },
 };
