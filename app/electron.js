@@ -20,7 +20,7 @@ app.on("ready", () => {
       title: "Git Gui",
       show: true,
       type: "textured",
-      // titleBarStyle: "hidden-inset",
+      titleBarStyle: "hidden-inset",
       backgroundColor: "#000000",
       fullscreenable: true,
       closable: true,

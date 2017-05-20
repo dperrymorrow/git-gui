@@ -3,10 +3,13 @@
 module.exports = {
   template: `
     <div class="selector">
-      <a class="selected" @click="toggle">{{ selected }}</a>
+      <a class="selected" @click="toggle">
+        <i v-if="icon" :class="iconClass"></i>
+        {{ selected }}
+        <i v-if="open" class="octicon octicon-triangle-up"></i>
+        <i v-else class="octicon octicon-triangle-down"></i>
+      </a>
 
-      <span v-if="open" class="octicon octicon-triangle-down"></span>
-      <span v-else class="octicon octicon-triangle-right"></span>
 
       <ul :class="{ active: open }">
         <li
@@ -26,6 +29,10 @@ module.exports = {
       type: String,
       required: false,
     },
+    icon: {
+      type: String,
+      required: false,
+    },
     items: {
       type: Array,
       required: true,
@@ -36,6 +43,12 @@ module.exports = {
     return {
       open: false,
     };
+  },
+
+  computed: {
+    iconClass() {
+      return this.icon ? `octicon octicon-${this.icon}` : "";
+    },
   },
 
   methods: {

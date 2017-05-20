@@ -10,6 +10,7 @@ function init() {
 
     const store = new Vuex.Store({
       state: {
+        mode: "status",
         inset: null,
         activeRepo: null,
         repos: data.repos,

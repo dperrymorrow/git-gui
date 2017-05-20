@@ -1,0 +1,31 @@
+@require './vars'
+
+ul.tabs
+  list-style: none
+  display: block
+  padding: 0
+  margin: 0
+  // border-bottom: 1px solid $white
+  background-color: rgba($dark, 0.8)
+  display: flex
+  justify-content: center
+  padding: ($padding/3) 0
+  border-bottom: 1px solid $dark
+
+  li
+    display: inline-block
+
+    a
+      line-height: $tab-height
+      padding: ($padding/3) $padding
+      color: $yellow
+      border-radius: $border-radius
+      transition: all .2s ease
+
+      &:hover
+        background-color: darken($yellow, 80%)
+
+    &.active
+      a
+        background-color: $yellow
+        color: $dark

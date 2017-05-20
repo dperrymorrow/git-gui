@@ -1,16 +1,19 @@
 
 @require 'normalize.css/normalize.css'
-@require '_includes/*'
 @require 'flexboxgrid/css/flexboxgrid.css'
+@require '_includes/*'
+@require '_components/*'
 
 html, body
   height: 100vh
   background-color: $dark
-  font-family: Monaco !important
-  color: $tan
-  padding: $padding
-  padding-top: ($padding*2)
+  font-family: $font-family
+  color: $white
+  padding-top: 50px
   font-size: 13px
 
-.active
-  color: $purple
+*
+  box-sizing: border-box
+
+a, button
+  cursor: pointer

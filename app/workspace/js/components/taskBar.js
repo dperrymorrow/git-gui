@@ -9,15 +9,40 @@ module.exports = {
   template: `
     <div class="task-bar">
 
-      <nav>
+      <nav class="main">
         <repos></repos>
         <div class="link-container">
-          <button @click="$store.commit('setInset', 'create-branch')">Create Branch</button>
-          <button @click.prevent="addRepo">Add Repo</button>
-          <button @click="$store.dispatch('pull')">Pull</button>
-          <button @click="$store.dispatch('push')">Push</button>
+          <button @click="$store.commit('setInset', 'create-branch')">
+          <i class="octicon octicon-plus"></i>
+          <i class="octicon octicon-git-branch"></i>
+          </button>
+          <button @click.prevent="addRepo">
+            <i class="octicon octicon-plus"></i>
+            <i class="octicon octicon-repo"></i>
+          </button>
+          <button @click="$store.dispatch('pull')">
+            <i class="octicon octicon-repo-pull"></i>
+          </button>
+          <button @click="$store.dispatch('push')">
+            <i class="octicon octicon-repo-push"></i>
+          </button>
         </div>
       </nav>
+
+      <ul class="tabs">
+        <li :class="{active: $store.state.mode == 'status'}">
+          <a @click.prevent="$store.commit('setMode', 'status')">
+            <i class="octicon octicon-diff"></i>
+            Changed
+          </a>
+        </li>
+        <li :class="{active: $store.state.mode == 'history'}">
+          <a @click.prevent="$store.commit('setMode', 'history')">
+            <i class="octicon octicon-history"></i>
+            History
+          </a>
+        </li>
+      </ul>
 
     </div>
   `,

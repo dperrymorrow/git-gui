@@ -5,12 +5,14 @@ module.exports = {
     <div class="repos">
 
       <selector
+        icon="repo"
         :items="$store.getters.repoNames"
         :selected="$store.getters.activeRepoName"
         @selected="changeRepo"
       ></selector>
 
       <selector
+        icon="git-branch"
         :items="$store.getters.allBranches"
         :selected="$store.state.currentBranch"
         @selected="changeBranch"

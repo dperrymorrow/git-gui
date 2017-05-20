@@ -24,6 +24,11 @@ module.exports = {
     state.defaultBranch = branch;
   },
 
+  // mode
+  setMode(state, mode) {
+    state.mode = mode;
+  },
+
   // errors
   addError(state, error) {
     console.error(error);

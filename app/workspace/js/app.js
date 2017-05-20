@@ -31,8 +31,8 @@ function start(el) {
           <task-bar></task-bar>
           <errors></errors>
           <component :is="$store.state.inset" v-if="$store.state.inset"></component>
-          <status></status>
-          <log></log>
+          <status v-if="$store.state.mode == 'status'"></status>
+          <log v-else></log>
           <debugger :keepAlive="false" :components="$children" v-if="isDebug"></debugger>
         </div>
       `,
