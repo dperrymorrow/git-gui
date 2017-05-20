@@ -4,14 +4,18 @@ module.exports = {
   template: `
     <div class="selector">
       <a class="selected" @click="toggle">{{ selected }}</a>
+
+      <span v-if="open" class="octicon octicon-triangle-down"></span>
+      <span v-else class="octicon octicon-triangle-right"></span>
+
       <ul :class="{ active: open }">
         <li
-          @click="select(item)"
+
           v-for="item in items"
           v-if="item != selected"
           :class="{ active: selected == item }"
         >
-          {{ item }}
+          <a @click="select(item)">{{ item }}</a>
         </li>
       </ul>
     </div>

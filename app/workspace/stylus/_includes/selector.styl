@@ -1,8 +1,13 @@
 
 .selector
-  padding: ($padding/2)
   position: relative
   background-color: $medium
+  cursor: pointer
+  user-select: none
+  color: $yellow
+
+  a.selected, li a
+    // padding: $padding, ($padding/2)
 
   ul
     background-color: $medium
@@ -11,11 +16,17 @@
     margin: 0
     padding: 0
     list-style: none
+    width: 100%
 
     &.active
       display: block
 
     li
-      padding: ($padding/2)
       display: block
       margin: 0
+      padding: 0
+      cursor: pointer
+
+      a
+        &:hover
+          color: $red

@@ -13,6 +13,10 @@ module.exports = {
     return state.repos.map(repo => repo.name);
   },
 
+  allBranches(state) {
+    return [].concat(state.localBranches, state.remoteBranches);
+  },
+
   activeRepoName(state) {
     const active = state.repos.find(repo => repo.path == state.activeRepo);
     return active ? active.name : null;
