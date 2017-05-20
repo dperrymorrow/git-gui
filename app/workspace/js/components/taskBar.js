@@ -9,14 +9,15 @@ module.exports = {
   template: `
     <div class="task-bar">
 
-      <repos></repos>
-
-      <div class="link-container">
-        <button @click="$store.commit('setInset', 'create-branch')">Create Branch</button>
-        <button @click.prevent="addRepo">Add Repo</button>
-        <button @click="$store.dispatch('pull')">Pull</button>
-        <button @click="$store.dispatch('push')">Push</button>
-      </div>
+      <nav>
+        <repos></repos>
+        <div class="link-container">
+          <button @click="$store.commit('setInset', 'create-branch')">Create Branch</button>
+          <button @click.prevent="addRepo">Add Repo</button>
+          <button @click="$store.dispatch('pull')">Pull</button>
+          <button @click="$store.dispatch('push')">Push</button>
+        </div>
+      </nav>
 
     </div>
   `,
