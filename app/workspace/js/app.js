@@ -20,17 +20,17 @@ function start(el) {
 
       components: {
         log: require("./components/log"),
-        repos: require("./components/repos"),
         status: require("./components/status"),
         errors: require("./components/errors"),
         "task-bar": require("./components/taskBar"),
+        "create-branch": require("./components/insets/createBranch"),
       },
 
       template: `
         <div id="app-root">
           <task-bar></task-bar>
           <errors></errors>
-          <repos></repos>
+          <component :is="$store.state.inset" v-if="$store.state.inset"></component>
           <status></status>
           <log></log>
           <debugger :keepAlive="false" :components="$children" v-if="isDebug"></debugger>

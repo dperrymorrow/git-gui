@@ -33,6 +33,15 @@ module.exports = {
     state.errors = [];
   },
 
+  // inset components
+  setInset(state, component) {
+    state.inset = component;
+  },
+
+  clearInset(state) {
+    state.inset = null;
+  },
+
   // repos
   setActiveRepo(state, path) {
     state.activeRepo = path;

@@ -5,14 +5,19 @@ const { dialog } = require("electron").remote;
 module.exports = {
   template: `
     <div>
+
+      <div v-if="$store.getters.isDirty">
+        <div :class="file.status.toLowerCase()" v-for="file in $store.state.status">
+          {{ file.status }} {{ file.file }}
+        </div>
+      </div>
+      <span v-else>Clean, no changes...</span>
+
       <div v-if="$store.getters.isDirty">
         <input type="text" placeholder="subject of your commit" v-model="subject"/>
         <textarea placeholder="optional: body of your commit" v-model="body"/></textarea>
-        <button @click.prevent="commit">Commit</button>
+        <button @click.prevent="commit">Commit to {{ $store.state.currentBranch }}</button>
       </div>
-
-      <pre v-if="$store.getters.isDirty">{{ $store.state.status }}</pre>
-      <span v-else>Clean, no changes...</span>
 
     </div>
   `,

@@ -38,6 +38,7 @@
     "electron-css-reload": "^1.0.8",
     "electron-vue-debugger": "^1.0.3",
     "flexboxgrid": "^6.3.1",
+    "normalize.css": "^7.0.0",
     "onchange": "^3.2.1",
     "sinon": "2.1.0",
     "stylus": "^0.54.5"

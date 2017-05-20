@@ -1,17 +1,16 @@
 "use strict";
 
-const { dialog } = require("electron").remote;
-
 module.exports = {
   template: `
-    <div>
+    <div class="repos">
+
       <ul>
         <li v-for="repo in $store.state.repos" :class="{active: repo.path == $store.state.activeRepo}">
           <a @click.prevent="setActive(repo.path)">
             {{ repo.name }}
           </a>
           <span v-if="repo.path == $store.state.activeRepo">
-            <select @input="changeBranch" v-model="currentBranch" :disabled="$store.getters.isDirty">
+            <select @input="changeBranch" v-model="currentBranch">
               <option disabled="disabled">-- default --</option>
               <option :value="$store.state.defaultBranch">{{$store.state.defaultBranch}}</option>
               <option disabled="disabled">-- local --</option>
@@ -23,7 +22,9 @@ module.exports = {
           <a v-else @click.prevent="removeRepo(repo.path)">x</a>
         </li>
       </ul>
-      <button @click.prevent="addRepo">Add Repo</button>
+
+
+
     </div>
   `,
 
@@ -46,20 +47,12 @@ module.exports = {
       this.$store.dispatch("changeRepo", path);
     },
 
-    removeRepo(path) {
-      this.$store.commit("removeRepo", path);
-    },
-
     changeBranch(event) {
       this.$store.dispatch("changeBranch", event.currentTarget.value);
     },
 
-    addRepo() {
-      dialog.showOpenDialog({ buttonLabel: "Choose Repository", properties: ["openDirectory"] }, dirs => {
-        if (!dirs) return;
-        this.$store.commit("addRepo", dirs[0]);
-        this.$store.dispatch("changeRepo", dirs[0]);
-      });
+    removeRepo(path) {
+      this.$store.commit("removeRepo", path);
     },
   },
 };
