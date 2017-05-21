@@ -10,7 +10,6 @@ ul.tabs
   display: flex
   justify-content: center
   padding: ($padding/3) 0
-  border-bottom: 1px solid $dark
 
   li
     display: inline-block
@@ -21,9 +20,20 @@ ul.tabs
       color: $yellow
       border-radius: $border-radius
       transition: all .2s ease
+      background-color: darken($yellow, 90%)
 
       &:hover
         background-color: darken($yellow, 80%)
+
+    &:first-child
+      a
+        border-top-right-radius: 0
+        border-bottom-right-radius: 0
+
+    &:last-child
+      a
+        border-top-left-radius: 0
+        border-bottom-left-radius: 0
 
     &.active
       a

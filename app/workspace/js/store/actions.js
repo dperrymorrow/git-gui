@@ -19,10 +19,10 @@ module.exports = {
 
   // branches
   changeBranch(context, branch) {
-    context.commit("setCurrentBranch", branch);
     return git.branch
       .checkout(branch)
       .then(() => {
+        context.commit("setCurrentBranch", branch);
         return context.dispatch("refresh");
       })
       .catch(err => {

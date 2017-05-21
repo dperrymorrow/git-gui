@@ -1,0 +1,33 @@
+
+@require '../_includes/vars'
+
+
+
+.commit-box
+  margin-bottom: $padding
+  
+  input, textarea
+    display: block
+    width: 100%
+
+.file-list
+
+  .file
+    margin-bottom: 1px
+    padding: .2em
+    cursor: pointer
+
+    &:nth-child(odd)
+      background-color: $medium
+
+    &:hover
+      background-color: $medium
+
+    &.modified
+      color: $yellow
+
+    &.untracked
+      color: $green
+
+    &.deleted
+      color: $red

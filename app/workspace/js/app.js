@@ -27,7 +27,7 @@ function start(el) {
       },
 
       template: `
-        <div id="app-root">
+        <div id="app-root" class="foo">
           <task-bar></task-bar>
           <errors></errors>
           <component :is="$store.state.inset" v-if="$store.state.inset"></component>
