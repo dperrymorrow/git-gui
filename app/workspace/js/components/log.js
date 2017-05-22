@@ -1,6 +1,6 @@
 "use strict";
 
-const { dialog } = require("electron").remote;
+const dif2html = require("diff2html").Diff2Html;
 
 module.exports = {
   template: `

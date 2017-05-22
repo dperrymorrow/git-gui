@@ -1,16 +1,19 @@
 @require './vars'
 
 .badge
-  border-radius: $border-radius
+  border-radius: ($border-radius*2)
+  min-width: 5em
+  padding: 0 .5em
+  color: $dark
 
-  &.danger
+  &.danger, &.deleted
     background-color: $red
 
   &.primary
     background-color: $aqua
 
-  &.warning
+  &.warning, &.modified
     background-color: $yellow
 
-  &.success
+  &.success, &.untracked
     background-color: $green

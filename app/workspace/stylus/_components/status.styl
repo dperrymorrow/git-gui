@@ -5,7 +5,7 @@
 
 .commit-box
   margin-bottom: $padding
-  
+
   input, textarea
     display: block
     width: 100%
@@ -18,16 +18,7 @@
     cursor: pointer
 
     &:nth-child(odd)
-      background-color: $medium
+      background-color: darken($medium, 10%)
 
     &:hover
       background-color: $medium
-
-    &.modified
-      color: $yellow
-
-    &.untracked
-      color: $green
-
-    &.deleted
-      color: $red

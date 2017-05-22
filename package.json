@@ -22,8 +22,10 @@
   "dependencies": {
     "child-process-promise": "2.2.1",
     "colors": "1.1.2",
+    "diff2html": "^2.3.0",
     "electron-default-menu": "^1.0.1",
     "electron-storage": "^1.0.7",
+    "highlight.js": "^9.11.0",
     "lodash.isempty": "^4.4.0",
     "lodash.last": "3.0.0",
     "lodash.throttle": "^4.1.1",

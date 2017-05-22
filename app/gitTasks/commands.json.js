@@ -1,5 +1,8 @@
 "use strict";
 
+// showing a file at a particular revision
+// git show 27cf8e84bb88e24ae4b4b3df2b77aab91a3735d8:full/repo/path/to/my_file.txt
+
 module.exports = {
   lineDilem: "[l]",
   entryDilem: "[e]",
@@ -10,7 +13,7 @@ module.exports = {
   branchCheckout: "git checkout {0}",
   branchCreate: "git branch {0}",
   addAll: "git add -A",
-  diffFile: "git diff {0}",
+  diffFile: "git diff -U100000 {0} ",
   push: "git push",
   pull: "git pull",
   commit: 'git commit -m "{0}" -m "{1}"',

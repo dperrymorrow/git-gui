@@ -1,6 +1,8 @@
 "use strict";
 
 const { dialog } = require("electron").remote;
+const git = require(`${ROOT}/gitTasks`);
+const dif2html = require("diff2html").Diff2Html;
 
 module.exports = {
   template: `
@@ -17,8 +19,7 @@ module.exports = {
         </div>
 
         <div v-if="$store.getters.isDirty">
-          <div class="file" :class="file.status.toLowerCase()" v-for="file in $store.state.status">
-            
+          <div class="file" @click="showDiff(file.file)" :class="file.status.toLowerCase()" v-for="file in $store.state.status">
             <span class="badge" :class="file.status.toLowerCase()">{{ file.status.charAt(0) }}</span>
             {{ file.file }}</td>
           </div>
@@ -29,7 +30,7 @@ module.exports = {
       </div>
 
       <div class="col-xs-8">
-
+        <div v-if="fileDiff" v-html="fileDiff"></div>
       </div>
     </div>
   `,
@@ -38,6 +39,7 @@ module.exports = {
 
   data() {
     return {
+      fileDiff: null,
       subject: "",
       body: "",
     };
@@ -50,6 +52,16 @@ module.exports = {
   },
 
   methods: {
+    showDiff(file) {
+      git
+        .fileDiff([file])
+        .then(results => {
+          // this.fileDiff = dif2html.getJsonFromDiff(results, { words: true });
+          this.fileDiff = dif2html.getPrettyHtml(results, { words: true });
+        })
+        .catch(console.error);
+    },
+
     commit() {
       this.$store
         .dispatch("addAll")
