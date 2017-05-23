@@ -1,0 +1,23 @@
+.task-bar
+  position: fixed
+  top: 0
+  left: 0
+  background-color: $medium
+  height: $button-height
+  width: 100vw
+  padding-left: 80px
+  -webkit-app-region: drag
+  box-sizing: border-box
+  border-bottom: 1px solid lighten($medium, 20%)
+
+  nav
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+    button, .selector
+      margin-left: -8px
+
+    button
+      border-right: 1px solid darken($blue, 20%)
+      border-radius: none

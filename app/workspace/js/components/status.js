@@ -8,7 +8,7 @@ module.exports = {
   template: `
     <div class="row status">
 
-      <div class="col-xs-4 file-list">
+      <div class="col-md-4 col-xs-12 file-list">
         <div class="commit-box" v-if="$store.getters.isDirty">
           <input type="text" placeholder="subject of your commit" v-model="subject"/>
           <textarea placeholder="optional: body of your commit" v-model="body"/></textarea>
@@ -29,7 +29,7 @@ module.exports = {
 
       </div>
 
-      <div class="col-xs-8">
+      <div class="col-md-8 col-xs-12">
         <div v-if="fileDiff" v-html="fileDiff"></div>
       </div>
     </div>

@@ -1,0 +1,54 @@
+
+.selector
+  position: relative
+  cursor: pointer
+  user-select: none
+  color: $purple
+  display: inline-block
+
+  a
+    display: block
+    transition: all .2s ease
+    cursor: pointer
+
+    &:hover
+      color: $red
+      background-color: lighten($medium, 5%)
+
+  a.selected
+    height: $button-height
+    line-height: $button-height
+    padding: 0 $padding
+
+  ul
+    background-color: $medium
+    position: absolute
+    display: none
+    margin: 0
+    padding: 0
+    list-style: none
+    box-shadow: 0px 0px 3px $dark
+    max-height: 80vh
+    min-width: 100%
+    overflow-y: auto
+    border-bottom-left-radius: $border-radius
+    border-bottom-right-radius: $border-radius
+
+    &.active
+      display: block
+
+    li
+      display: block
+      margin: 0
+      padding: 0
+      cursor: pointer
+
+      a
+        border-bottom: 1px solid lighten($medium, 10%)
+        white-space: nowrap
+        padding: 0 $padding
+        line-height: 3em
+
+      &:last-child
+        a
+          border: none
