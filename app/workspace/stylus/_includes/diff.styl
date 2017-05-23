@@ -3,6 +3,7 @@
 
 .d2h-wrapper
   text-align: left
+  background-color: lighten($input-bg, 5%)
   color: lighten($medium, 50%)
 
 .d2h-file-header
@@ -16,7 +17,7 @@
 
 .d2h-lines-added
   text-align: right
-  border-radius: 5px 0 0 5px
+  // border-radius: 5px 0 0 5px
   color: rgba($green, .5)
   padding: 2px
   vertical-align: middle
@@ -35,7 +36,9 @@
   display: flex
   align-items: center
   width: 100%
-  font-family: $font-family
+  font-family: $font-family-code
+  padding-left: $padding
+  background-color: $input-bg
 
 
 .d2h-file-name
@@ -45,15 +48,10 @@
   line-height: 21px
 
 
-.d2h-file-wrapper
-  border-radius: 3px
-  margin-bottom: 1em
-
-
 .d2h-diff-table
   width: 100%
   border-collapse: collapse
-  font-family: $font-family
+  font-family: $font-family-code
   font-size: $font-size
 
 
@@ -71,6 +69,7 @@
 .d2h-file-diff
   overflow-x: scroll
   overflow-y: hidden
+  background: transparent
 
 
 .d2h-file-side-diff
@@ -155,19 +154,19 @@
   width: 86px
   padding-left: 0px
   padding-right: 5px
-  background-color: darken($blue, 80%)
-  color: $blue
+  background-color: $input-bg
+  color: rgba($yellow, .3)
   text-align: right
   cursor: pointer
 
 
 .d2h-code-linenumber.d2h-ins
   .line-num1, .line-num2
-    color: white
+    color: $white
 
 .d2h-code-linenumber.d2h-del
   .line-num1, .line-num2
-    color: white
+    color: $white
 
 
 .d2h-code-side-linenumber
@@ -191,32 +190,27 @@
  */
 
 .d2h-del
-  background-color: rgba($red, .3)
-  color: white
+  background-color: rgba($red, .15)
+  color: $white
 
 .d2h-ins
-  background-color: rgba($green, .3)
-  color: white
+  background-color: rgba($green, .15)
+  color: $white
 
 .d2h-info
-  background-color: #f8fafd
-  color: rgba(0, 0, 0, 0.3)
+  background-color: $input-bg
+  color: $white
   border-color: #d5e4f2
 
 
 .d2h-file-diff .d2h-del.d2h-change
   background-color: $yellow
 
-
 .d2h-file-diff .d2h-ins.d2h-change
-  background-color: #ded
-
-
-
+  background-color: $yellow
 
 .d2h-icon-wrapper
   line-height: 31px
-
 
 .d2h-icon
   vertical-align: middle
@@ -241,27 +235,21 @@
 
 
 .d2h-tag
-  @extend .badge
+  margin-left: ($padding/2)
 
 
 .d2h-deleted-tag
-  @extend .badge
-  @extend .badge.danger
-
+  color: $red
 
 .d2h-added-tag
-  @extend .badge
-  @extend .badge.success
-
+  color: $green
 
 .d2h-changed-tag
-  @extend .badge
-  @extend .badge.warning
+  color: $yellow
 
 
 .d2h-moved-tag
-  @extend .badge
-  @extend .badge.warning
+  color: $orange
 
 
 /*

@@ -1,21 +1,26 @@
 
 @require 'normalize.css/normalize.css'
-@require 'flexboxgrid/css/flexboxgrid.css'
 @require '_includes/*'
 @require '_components/*'
+@require 'flexboxgrid/css/flexboxgrid.css'
 
 html, body
   height: 100vh
   background-color: $medium
-  font-family: $font-family
+  font-family: $font-family-display
   color: $white
-  padding: $padding
+  padding: $padding 0
   padding-top: 50px
   font-size: 13px
-
+  box-sizing: border-box
+  margin: 0
 
 *
   box-sizing: border-box
 
 a, button
   cursor: pointer
+
+
+.row
+  margin: 0

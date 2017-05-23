@@ -2,22 +2,21 @@
 @require '../_includes/vars'
 
 .commit-box
-  margin-bottom: $padding
+  margin: $padding 0
 
   input, textarea
     display: block
     width: 100%
 
 .file-list
-  margin-bottom: $padding
+  // margin-bottom: $padding
+  // padding-left: $padding
 
   .file
     margin-bottom: 1px
     padding: .2em
     cursor: pointer
-
-    &:nth-child(odd)
-      background-color: darken($medium, 10%)
+    color: $blue
 
     &:hover
       background-color: $medium
