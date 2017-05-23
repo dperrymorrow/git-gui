@@ -13,7 +13,7 @@ module.exports = {
   branchCheckout: "git checkout {0}",
   branchCreate: "git branch {0}",
   addAll: "git add -A",
-  diffFile: "git diff -U100000 {0} ",
+  diffFile: "git diff {0} ",
   push: "git push",
   pull: "git pull",
   commit: 'git commit -m "{0}" -m "{1}"',

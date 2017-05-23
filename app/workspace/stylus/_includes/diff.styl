@@ -67,14 +67,14 @@
 
 
 .d2h-file-diff
-  overflow-x: scroll
+  overflow-x: auto
   overflow-y: hidden
   background: transparent
 
 
 .d2h-file-side-diff
   display: inline-block
-  overflow-x: scroll
+  overflow-x: auto
   overflow-y: hidden
   width: 50%
   margin-right: -4px
@@ -100,7 +100,8 @@
   display: inline-block
   margin-top: -1px
   text-decoration: none
-  background-color: $red
+  background-color: rgba($red, .5)
+  // color: darken($red, 80%)
   border-radius: 0.2em
 
 
@@ -110,6 +111,7 @@
   margin-top: -1px
   text-decoration: none
   background-color: rgba($green, .5)
+  // color: darken($green, 80%)
   border-radius: 0.2em
   text-align: left
 
@@ -155,18 +157,20 @@
   padding-left: 0px
   padding-right: 5px
   background-color: $input-bg
-  color: rgba($yellow, .3)
+  color: lighten($medium, 30%)
   text-align: right
   cursor: pointer
 
 
 .d2h-code-linenumber.d2h-ins
+  background-color: $green
   .line-num1, .line-num2
-    color: $white
+    color: darken($green, 80%)
 
 .d2h-code-linenumber.d2h-del
+  background-color: $red
   .line-num1, .line-num2
-    color: $white
+    color: darken($red, 80%)
 
 
 .d2h-code-side-linenumber
