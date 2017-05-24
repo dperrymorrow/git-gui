@@ -1,22 +1,29 @@
 
 @require '../_includes/vars'
 
-.commit-box
-  margin: $padding 0
 
-  input, textarea
-    display: block
-    width: 100%
+.status
+  .file-list
+    margin-bottom: $padding
+    // padding-left: $padding
 
-.file-list
-  // margin-bottom: $padding
-  // padding-left: $padding
+    .file
+      margin-bottom: 1px
+      padding: .2em
+      cursor: pointer
+      color: $blue
+      transition: all .2s ease
 
-  .file
-    margin-bottom: 1px
-    padding: .2em
-    cursor: pointer
-    color: $blue
+      &.active
+        color: $purple !important
 
-    &:hover
-      background-color: $medium
+      &:hover
+        color: lighten($blue, 20%)
+
+
+  .commit-box
+    margin: $padding 0
+
+    input, textarea
+      display: block
+      width: 100%

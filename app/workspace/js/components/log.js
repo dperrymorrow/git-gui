@@ -1,17 +1,25 @@
 "use strict";
 
+const git = require(`${ROOT}/gitTasks`);
 const dif2html = require("diff2html").Diff2Html;
 
 module.exports = {
   template: `
-    <div class="row">
-      <div class="col-xs-4">
-        <pre v-if="hasEntries">{{ $store.state.log }}</pre>
-        <span v-else>no log entries...</span>
+    <div class="log">
+
+        <div v-if="hasEntries">
+          <div @click="selectSha(entry.sha)" class="log-entry" v-for="entry in $store.state.log">
+            {{ entry.sha }}
+            {{ entry.author }}
+            {{ entry.date }}
+            {{ entry.subject }}
+            {{ entry.body }}
+
+            <div v-if="diff && entry.sha == chosenSha" v-html="diff"></div>
+          </div>
+
       </div>
-      <div class="col-xs-8">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </div>
+
     </div>
   `,
 
@@ -22,8 +30,27 @@ module.exports = {
       return this.$store.state.log.length > 0;
     },
   },
+
+  methods: {
+    selectSha(sha) {
+      this.chosenSha = sha;
+      this.showDiff();
+    },
+
+    showDiff() {
+      git
+        .show(this.chosenSha)
+        .then(results => {
+          this.diff = dif2html.getPrettyHtml(results, { words: true });
+        })
+        .catch(console.error);
+    },
+  },
+
   data() {
     return {
+      diff: null,
+      chosenSha: null,
       action: "gitLog",
     };
   },

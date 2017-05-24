@@ -16,10 +16,10 @@ module.exports = {
     return base.run(commands.commit, args).catch(err => Promise.reject(err));
   },
 
-  fileDiff(args) {
+  fileDiff(file) {
     return (
       base
-        .run(commands.diffFile, args)
+        .run(commands.diffFile, [file])
         // .then(results => {
         //   return diff(results);
         // })

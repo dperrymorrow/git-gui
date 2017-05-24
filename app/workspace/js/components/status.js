@@ -8,27 +8,24 @@ module.exports = {
   template: `
     <div class="status">
 
-      <div class="file-list">
+    <div class="form commit-box" v-if="$store.getters.isDirty">
+      <input type="text" placeholder="subject of your commit" v-model="subject"/>
+      <textarea placeholder="optional: body of your commit" v-model="body"/></textarea>
+      <button class="dangle" @click.prevent="commit">
+        <i class="octicon octicon-git-commit"></i>
+        Commit to {{ $store.state.currentBranch }}
+      </button>
+    </div>
 
+      <div class="file-list">
         <div v-if="$store.getters.isDirty">
-          <div class="file" @click="selectFile(file.file)" :class="file.status.toLowerCase()" v-for="file in $store.state.status">
+          <div class="file" @click="selectFile(file.file)" :class="{active: file.file == selectedFile}" v-for="file in $store.state.status">
             <span class="badge" :class="file.status.toLowerCase()">{{ file.status.charAt(0) }}</span>
             {{ file.file }}</td>
           </div>
         </div>
-
-        <div class="commit-box" v-if="$store.getters.isDirty">
-          <input type="text" placeholder="subject of your commit" v-model="subject"/>
-          <textarea placeholder="optional: body of your commit" v-model="body"/></textarea>
-          <button class="" @click.prevent="commit">
-            <i class="octicon octicon-git-commit"></i>
-            Commit to {{ $store.state.currentBranch }}
-          </button>
-        </div>
-
         <span v-else>Clean, no changes...</span>
       </div>
-
 
       <div v-if="fileDiff" v-html="fileDiff"></div>
 
@@ -56,7 +53,7 @@ module.exports = {
   methods: {
     showDiff() {
       git
-        .fileDiff([this.selectedFile])
+        .fileDiff(this.selectedFile)
         .then(results => {
           // this.fileDiff = dif2html.getJsonFromDiff(results, { words: true });
           this.fileDiff = dif2html.getPrettyHtml(results, { words: true });

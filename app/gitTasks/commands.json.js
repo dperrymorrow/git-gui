@@ -20,5 +20,5 @@ module.exports = {
   status: "git status --porcelain",
   log: "git log --format='[e]%n[l] sha: %H%n[l] author: %an %n[l] email: %ae %n[l] date: %ar %n[l] subject: %s%n[l] body: %b'",
   fetch: "git fetch --all",
-  show: `git show {0} --pretty=format:'[e]%n[l] sha: %H%n[l] author: %an %n[l] email: %ae %n[l] date: %ar %n[l] subject: %s%n[l] body: %b%n[e]'`,
+  show: `git show {0}`,
 };

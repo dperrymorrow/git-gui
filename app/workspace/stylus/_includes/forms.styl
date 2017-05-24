@@ -12,6 +12,22 @@ input, textarea
   border-radius: $border-radius
   height: $button-height
   line-height: 1.4em
+  outline: none
+  transition: all .2s ease
+
+  &:focus
+    background-color: lighten($input-bg, 5%)
 
 textarea
   height: ($button-height*2)
+
+
+.form
+  position: relative
+
+  button.dangle
+    position: absolute
+    right: 0
+    bottom: -($button-height - 1px)
+    border-top-left-radius: 0
+    border-top-right-radius: 0
