@@ -100,8 +100,8 @@
   display: inline-block
   margin-top: -1px
   text-decoration: none
-  background-color: rgba($red, .5)
-  // color: darken($red, 80%)
+  background-color: lighten($red, 30%)
+  color: darken($red, 80%)
   border-radius: 0.2em
 
 
@@ -110,8 +110,8 @@
   display: inline-block
   margin-top: -1px
   text-decoration: none
-  background-color: rgba($green, .5)
-  // color: darken($green, 80%)
+  background-color: lighten($green, 30%)
+  color: darken($green, 80%)
   border-radius: 0.2em
   text-align: left
 
@@ -163,14 +163,14 @@
 
 
 .d2h-code-linenumber.d2h-ins
-  background-color: $green
+  background-color: lighten($green, 30%)
   .line-num1, .line-num2
-    color: darken($green, 80%)
+    color: darken($green, 50%)
 
 .d2h-code-linenumber.d2h-del
-  background-color: $red
+  background-color: lighten($red, 30%)
   .line-num1, .line-num2
-    color: darken($red, 80%)
+    color: darken($red, 50%)
 
 
 .d2h-code-side-linenumber
@@ -202,7 +202,8 @@
   color: $white
 
 .d2h-info
-  background-color: $input-bg
+  background-color: $medium
+  margin-top: $padding
   color: $white
   border-color: #d5e4f2
 

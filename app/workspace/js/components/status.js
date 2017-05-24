@@ -11,7 +11,7 @@ module.exports = {
       <div class="file-list">
 
         <div v-if="$store.getters.isDirty">
-          <div class="file" @click="showDiff(file.file)" :class="file.status.toLowerCase()" v-for="file in $store.state.status">
+          <div class="file" @click="selectFile(file.file)" :class="file.status.toLowerCase()" v-for="file in $store.state.status">
             <span class="badge" :class="file.status.toLowerCase()">{{ file.status.charAt(0) }}</span>
             {{ file.file }}</td>
           </div>
@@ -39,6 +39,7 @@ module.exports = {
 
   data() {
     return {
+      selectedFile: null,
       fileDiff: null,
       subject: "",
       body: "",
@@ -48,18 +49,24 @@ module.exports = {
   mounted() {
     setInterval(() => {
       this.$store.dispatch("gitStatus");
+      if (this.selectedFile) this.showDiff();
     }, 4000);
   },
 
   methods: {
-    showDiff(file) {
+    showDiff() {
       git
-        .fileDiff([file])
+        .fileDiff([this.selectedFile])
         .then(results => {
           // this.fileDiff = dif2html.getJsonFromDiff(results, { words: true });
           this.fileDiff = dif2html.getPrettyHtml(results, { words: true });
         })
         .catch(console.error);
+    },
+
+    selectFile(file) {
+      this.selectedFile = file;
+      this.showDiff();
     },
 
     commit() {
