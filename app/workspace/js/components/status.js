@@ -1,8 +1,10 @@
 "use strict";
 
+const Prism = require("prismjs");
 const { dialog } = require("electron").remote;
 const git = require(`${ROOT}/gitTasks`);
 const dif2html = require("diff2html").Diff2Html;
+const fs = require("fs");
 
 module.exports = {
   template: `
@@ -27,7 +29,7 @@ module.exports = {
         <span v-else>Clean, no changes...</span>
       </div>
 
-      <div v-if="fileDiff" v-html="fileDiff"></div>
+      <div id="diff" v-html="diff"></div>
 
     </div>
   `,
@@ -37,26 +39,63 @@ module.exports = {
   data() {
     return {
       selectedFile: null,
-      fileDiff: null,
+      diff: null,
       subject: "",
       body: "",
     };
   },
 
+  watch: {
+    curRepo() {
+      this.refresh();
+    },
+  },
+
+  computed: {
+    curRepo() {
+      return this.$store.state.activeRepo;
+    },
+    curBranch() {
+      return this.$store.state.currentBranch;
+    },
+  },
+
   mounted() {
-    setInterval(() => {
-      this.$store.dispatch("gitStatus");
-      if (this.selectedFile) this.showDiff();
-    }, 4000);
+    fs.watch(this.$store.state.activeRepo, { persistent: true, recursive: true }, (event, filename) => {
+      if (filename.includes(".git/")) return;
+      this.refresh();
+    });
+    this.refresh();
   },
 
   methods: {
+    refresh() {
+      this.$store.dispatch("gitStatus");
+
+      if (this.selectedFile) {
+        this.showDiff();
+      } else {
+        git.statusDiff().then(diff => {
+          this.diff = dif2html.getPrettyHtml(diff, { words: true, showFiles: false });
+        });
+      }
+    },
+
+    highlight() {
+      Array.from(this.$el.querySelectorAll(".d2h-code-line-ctn")).forEach(item => {
+        item.innerHTML = Prism.highlight(item.innerHTML, Prism.languages.javascript);
+        console.log(item.innerHTML);
+      });
+    },
+
     showDiff() {
       git
         .fileDiff(this.selectedFile)
         .then(results => {
-          // this.fileDiff = dif2html.getJsonFromDiff(results, { words: true });
-          this.fileDiff = dif2html.getPrettyHtml(results, { words: true });
+          this.diff = dif2html.getPrettyHtml(results, {
+            matching: "none",
+            outputFormat: "line-by-line",
+          });
         })
         .catch(console.error);
     },

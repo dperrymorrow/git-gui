@@ -32,6 +32,7 @@ function init() {
     });
 
     if (data.activeRepo) {
+      // foobar
       store.dispatch("changeRepo", data.activeRepo);
     }
 

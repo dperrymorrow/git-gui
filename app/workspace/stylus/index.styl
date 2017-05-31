@@ -17,10 +17,21 @@ html, body
 
 *
   box-sizing: border-box
+  &::-webkit-scrollbar
+    width: 10px
+
+  &::-webkit-scrollbar-thumb
+    background: rgba($purple, 0.3)
+    border-radius: 5px
+
+  &::-webkit-scrollbar-track
+    background: transparent
 
 a, button
   cursor: pointer
 
+a
+  color: $blue
 
 .row
   margin: 0

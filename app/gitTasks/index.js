@@ -2,7 +2,6 @@
 
 const base = require("./base");
 const commands = require("./commands.json");
-const diff = require("./diff");
 const fs = require("fs");
 
 module.exports = {
@@ -16,15 +15,12 @@ module.exports = {
     return base.run(commands.commit, args).catch(err => Promise.reject(err));
   },
 
+  statusDiff() {
+    return base.run(commands.statusDiff).catch(err => Promise.reject(err));
+  },
+
   fileDiff(file) {
-    return (
-      base
-        .run(commands.diffFile, [file])
-        // .then(results => {
-        //   return diff(results);
-        // })
-        .catch(err => Promise.reject(err))
-    );
+    return base.run(commands.diffFile, [file]).catch(err => Promise.reject(err));
   },
   addAll() {
     return base.run(commands.addAll).catch(err => Promise.reject(err));

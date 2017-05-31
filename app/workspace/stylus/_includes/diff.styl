@@ -5,8 +5,11 @@
   text-align: left
   background-color: lighten($input-bg, 5%)
   color: lighten($medium, 50%)
+  margin-bottom: ($padding*2)
 
 .d2h-file-header
+  padding-top: $padding
+  background-color: $medium
   // padding: 5px 10px
 
 .d2h-file-stats
@@ -18,7 +21,7 @@
 .d2h-lines-added
   text-align: right
   // border-radius: 5px 0 0 5px
-  color: rgba($green, .5)
+  // color: rgba($green, .5)
   padding: 2px
   vertical-align: middle
 
@@ -97,23 +100,24 @@
 
 .d2h-code-line del,
 .d2h-code-side-line del
-  display: inline-block
-  margin-top: -1px
+  // display: inline-block
+  // margin-top: -1px
   text-decoration: none
-  background-color: lighten($red, 30%)
-  color: darken($red, 80%)
-  border-radius: 0.2em
+  // background-color: lighten($red, 30%)
+  // color: darken($red, 80%)
+  // border-radius: 0.2em
 
 
 .d2h-code-line ins,
 .d2h-code-side-line ins
-  display: inline-block
-  margin-top: -1px
+  // display: inline-block
+  // margin-top: -1px
   text-decoration: none
-  background-color: lighten($green, 30%)
-  color: darken($green, 80%)
-  border-radius: 0.2em
-  text-align: left
+  // background-color: rgba($green, .2)
+  // background-color: lighten($green, 30%)
+  // color: darken($green, 80%)
+  // border-radius: 0.2em
+  // text-align: left
 
 
 .d2h-code-line-prefix
@@ -167,10 +171,23 @@
   .line-num1, .line-num2
     color: darken($green, 50%)
 
+.d2h-ins
+  background-color: rgba($green, .2)
+  color: $white
+
+
+
+.d2h-del
+  background-color: rgba($red, .2)
+  color: $white
+
 .d2h-code-linenumber.d2h-del
   background-color: lighten($red, 30%)
   .line-num1, .line-num2
     color: darken($red, 50%)
+
+.d2h-code-line
+  background: transparent
 
 
 .d2h-code-side-linenumber
@@ -193,26 +210,11 @@
  * Changes Highlight
  */
 
-.d2h-del
-  background-color: rgba($red, .15)
-  color: $white
-
-.d2h-ins
-  background-color: rgba($green, .15)
-  color: $white
-
 .d2h-info
-  background-color: $medium
-  margin-top: $padding
-  color: $white
+  // background-color: $input-bg
+  // margin-top: $padding
+  // color: $white
   border-color: #d5e4f2
-
-
-.d2h-file-diff .d2h-del.d2h-change
-  background-color: $yellow
-
-.d2h-file-diff .d2h-ins.d2h-change
-  background-color: $yellow
 
 .d2h-icon-wrapper
   line-height: 31px

@@ -5,20 +5,23 @@ const dif2html = require("diff2html").Diff2Html;
 
 module.exports = {
   template: `
-    <div class="log">
+    <div class="row log">
 
-        <div v-if="hasEntries">
-          <div @click="selectSha(entry.sha)" class="log-entry" v-for="entry in $store.state.log">
-            {{ entry.sha }}
-            {{ entry.author }}
-            {{ entry.date }}
-            {{ entry.subject }}
-            {{ entry.body }}
-
-            <div v-if="diff && entry.sha == chosenSha" v-html="diff"></div>
-          </div>
-
+      <div class="col-md-4 col-xs-12">
+        <div v-if="hasEntries" @click="selectSha(entry.sha)" class="log-entry" v-for="entry in $store.state.log">
+          {{ entry.sha }}
+          {{ entry.author }}
+          {{ entry.date }}
+          {{ entry.subject }}
+          {{ entry.body }}
+        </div>
       </div>
+
+      <div
+        class="col-md-8 col-xs-12"
+        v-if="diff"
+        v-html="diff"
+      ></div>
 
     </div>
   `,
@@ -41,7 +44,11 @@ module.exports = {
       git
         .show(this.chosenSha)
         .then(results => {
-          this.diff = dif2html.getPrettyHtml(results, { words: true });
+          this.diff = dif2html.getPrettyHtml(results, {
+            matching: "lines",
+            showFiles: true,
+            outputFormat: "line-by-line",
+          });
         })
         .catch(console.error);
     },
