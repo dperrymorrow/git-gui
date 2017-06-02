@@ -2,11 +2,9 @@
 
 module.exports = {
   template: `
-    <div>
-      <div class="error" v-for="error in $store.state.errors">
-        <pre>{{ error }}</pre>
-      </div>
-      <button v-if="$store.getters.hasErrors" @click="clear">Clear Errors</button>
+    <div class="error">
+      <pre v-for="error in $store.state.errors">{{ error.stderr }}</pre>
+      <button @click="clear" class="red sm">Clear Errors</button>
     </div>
   `,
 

@@ -1,6 +1,5 @@
 "use strict";
 
-const Prism = require("prismjs");
 const { dialog } = require("electron").remote;
 const git = require(`${ROOT}/gitTasks`);
 const dif2html = require("diff2html").Diff2Html;
@@ -81,12 +80,12 @@ module.exports = {
       }
     },
 
-    highlight() {
-      Array.from(this.$el.querySelectorAll(".d2h-code-line-ctn")).forEach(item => {
-        item.innerHTML = Prism.highlight(item.innerHTML, Prism.languages.javascript);
-        console.log(item.innerHTML);
-      });
-    },
+    // highlight() {
+    //   Array.from(this.$el.querySelectorAll(".d2h-code-line-ctn")).forEach(item => {
+    //     item.innerHTML = Prism.highlight(item.innerHTML, Prism.languages.javascript);
+    //     console.log(item.innerHTML);
+    //   });
+    // },
 
     showDiff() {
       git

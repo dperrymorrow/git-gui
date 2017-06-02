@@ -5,8 +5,6 @@ if (ENV == "development") Vue.use(require("electron-vue-debugger"));
 
 function start(el) {
   return vuexStore.init().then(store => {
-    // routerSync.sync(store, router);
-
     return new Vue({
       el: el,
       store,
@@ -29,7 +27,7 @@ function start(el) {
       template: `
         <div id="app-root" class="foo">
           <task-bar></task-bar>
-          <errors></errors>
+          <errors v-if="$store.getters.hasErrors"></errors>
           <component :is="$store.state.inset" v-if="$store.state.inset"></component>
           <status v-if="$store.state.mode == 'status'"></status>
           <log v-else></log>

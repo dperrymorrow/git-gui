@@ -1,6 +1,8 @@
 @require './vars'
 @require './badge'
 
+$overlay-opacity = .2
+
 .d2h-wrapper
   text-align: left
   background-color: lighten($input-bg, 5%)
@@ -43,13 +45,11 @@
   padding-left: $padding
   background-color: $input-bg
 
-
 .d2h-file-name
   white-space: nowrap
   text-overflow: ellipsis
   overflow-x: hidden
   line-height: 21px
-
 
 .d2h-diff-table
   width: 100%
@@ -103,9 +103,11 @@
   // display: inline-block
   // margin-top: -1px
   text-decoration: none
+  border: 1px solid $red
+  background-color: rgba($red, $overlay-opacity)
   // background-color: lighten($red, 30%)
   // color: darken($red, 80%)
-  // border-radius: 0.2em
+  border-radius: 0.2em
 
 
 .d2h-code-line ins,
@@ -113,10 +115,11 @@
   // display: inline-block
   // margin-top: -1px
   text-decoration: none
-  // background-color: rgba($green, .2)
+  background-color: rgba($green, $overlay-opacity)
+  border: 1px solid $green
   // background-color: lighten($green, 30%)
   // color: darken($green, 80%)
-  // border-radius: 0.2em
+  border-radius: 0.2em
   // text-align: left
 
 
@@ -172,13 +175,13 @@
     color: darken($green, 50%)
 
 .d2h-ins
-  background-color: rgba($green, .2)
+  background-color: rgba($green, $overlay-opacity)
   color: $white
 
 
 
 .d2h-del
-  background-color: rgba($red, .2)
+  background-color: rgba($red, $overlay-opacity)
   color: $white
 
 .d2h-code-linenumber.d2h-del
@@ -211,10 +214,8 @@
  */
 
 .d2h-info
-  // background-color: $input-bg
-  // margin-top: $padding
-  // color: $white
-  border-color: #d5e4f2
+  background-color: $medium
+  color: lighten($medium, 70%)
 
 .d2h-icon-wrapper
   line-height: 31px
