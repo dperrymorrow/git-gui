@@ -111,6 +111,7 @@ module.exports = {
           return this.$store.dispatch("commit", [this.subject, this.body]);
         })
         .then(() => {
+          this.refresh();
           this.subject = this.body = "";
         });
     },
