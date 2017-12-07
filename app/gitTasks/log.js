@@ -9,8 +9,6 @@ module.exports = function() {
   return base
     .run(commands.log)
     .then(results => parse(results).split(commands.entryDilem).arr)
-    .then(entries => {
-      return entries.map(commit => parse(commit).toObject());
-    })
+    .then(entries => entries.map(commit => parse(commit).toObject()))
     .catch(console.log);
 };

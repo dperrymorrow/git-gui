@@ -39,7 +39,7 @@ module.exports = {
 
   methods: {
     changeRepo(name) {
-      const path = this.$store.state.repos.find(repo => repo.name == name).path;
+      const path = this.$store.state.repos.find(repo => repo.name === name).path;
       this.$store.dispatch("changeRepo", path);
     },
     changeBranch(branch) {

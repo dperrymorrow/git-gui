@@ -75,11 +75,17 @@ module.exports = {
   },
 
   push(context) {
-    return git.push().then(() => context.dispatch("refresh")).catch(err => context.commit("addError", err));
+    return git
+      .push()
+      .then(() => context.dispatch("refresh"))
+      .catch(err => context.commit("addError", err));
   },
 
   pull(context) {
-    return git.pull().then(() => context.dispatch("refresh")).catch(err => context.commit("addError", err));
+    return git
+      .pull()
+      .then(() => context.dispatch("refresh"))
+      .catch(err => context.commit("addError", err));
   },
 
   commit(context, args) {

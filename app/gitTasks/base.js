@@ -14,7 +14,7 @@ module.exports = {
     return cwd;
   },
 
-  run(cmd, args = [], dryRun = false) {
+  async run(cmd, args = [], dryRun = false) {
     args.forEach((arg, index) => {
       cmd = cmd.replace(`{${index}}`, arg);
     });
@@ -25,8 +25,7 @@ module.exports = {
       return Promise.resolve(cmd);
     }
 
-    return exec(`cd ${cwd} && ${cmd}`).then(result => {
-      return result.stdout;
-    });
+    const result = await exec(`cd ${cwd} && ${cmd}`);
+    return result.stdout;
   },
 };

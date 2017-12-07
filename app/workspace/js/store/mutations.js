@@ -55,6 +55,6 @@ module.exports = {
     state.repos.push({ path, name: _.last(path.split("/")) });
   },
   removeRepo(state, path) {
-    state.repos = state.repos.filter(repo => repo.path != path);
+    state.repos = state.repos.filter(repo => repo.path !== path);
   },
 };

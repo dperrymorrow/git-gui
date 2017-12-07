@@ -60,23 +60,26 @@ module.exports = {
   },
 
   mounted() {
-    fs.watch(this.$store.state.activeRepo, { persistent: true, recursive: true }, (event, filename) => {
-      if (filename.includes(".git/")) return;
-      this.refresh();
-    });
+    fs.watch(
+      this.$store.state.activeRepo,
+      { persistent: true, recursive: true },
+      (event, filename) => {
+        if (filename.includes(".git/")) return;
+        this.refresh();
+      }
+    );
     this.refresh();
   },
 
   methods: {
-    refresh() {
+    async refresh() {
       this.$store.dispatch("gitStatus");
 
       if (this.selectedFile) {
         this.showDiff();
       } else {
-        git.statusDiff().then(diff => {
-          this.diff = dif2html.getPrettyHtml(diff, { words: true, showFiles: false });
-        });
+        const diff = await git.statusDiff();
+        this.diff = dif2html.getPrettyHtml(diff, { words: true, showFiles: false });
       }
     },
 
@@ -87,16 +90,13 @@ module.exports = {
     //   });
     // },
 
-    showDiff() {
-      git
-        .fileDiff(this.selectedFile)
-        .then(results => {
-          this.diff = dif2html.getPrettyHtml(results, {
-            matching: "none",
-            outputFormat: "line-by-line",
-          });
-        })
-        .catch(console.error);
+    async showDiff() {
+      const results = await git.fileDiff(this.selectedFile);
+
+      this.diff = dif2html.getPrettyHtml(results, {
+        matching: "none",
+        outputFormat: "line-by-line",
+      });
     },
 
     selectFile(file) {
@@ -104,16 +104,12 @@ module.exports = {
       this.showDiff();
     },
 
-    commit() {
-      this.$store
-        .dispatch("addAll")
-        .then(() => {
-          return this.$store.dispatch("commit", [this.subject, this.body]);
-        })
-        .then(() => {
-          this.refresh();
-          this.subject = this.body = "";
-        });
+    async commit() {
+      await this.$store.dispatch("addAll");
+      await this.$store.dispatch("commit", [this.subject, this.body]);
+
+      this.refresh();
+      this.subject = this.body = "";
     },
   },
 };

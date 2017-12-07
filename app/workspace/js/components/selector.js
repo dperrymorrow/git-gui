@@ -1,4 +1,4 @@
-"use sctrict";
+"use strict";
 
 module.exports = {
   template: `

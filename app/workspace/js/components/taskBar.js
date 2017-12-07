@@ -63,11 +63,14 @@ module.exports = {
 
   methods: {
     addRepo() {
-      dialog.showOpenDialog({ buttonLabel: "Choose Repository", properties: ["openDirectory"] }, dirs => {
-        if (!dirs) return;
-        this.$store.commit("addRepo", dirs[0]);
-        this.$store.dispatch("changeRepo", dirs[0]);
-      });
+      dialog.showOpenDialog(
+        { buttonLabel: "Choose Repository", properties: ["openDirectory"] },
+        dirs => {
+          if (!dirs) return;
+          this.$store.commit("addRepo", dirs[0]);
+          this.$store.dispatch("changeRepo", dirs[0]);
+        }
+      );
     },
   },
 };

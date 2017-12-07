@@ -1,30 +1,31 @@
 "use strict";
 
 const vuexStore = require("./store");
-if (ENV == "development") Vue.use(require("electron-vue-debugger"));
+if (ENV === "development") Vue.use(require("electron-vue-debugger"));
 
 function start(el) {
-  return vuexStore.init().then(store => {
-    return new Vue({
-      el: el,
-      store,
-      // router,
+  return vuexStore.init().then(
+    store =>
+      new Vue({
+        el: el,
+        store,
+        // router,
 
-      computed: {
-        isDebug() {
-          return ENV == "development";
+        computed: {
+          isDebug() {
+            return ENV === "development";
+          },
         },
-      },
 
-      components: {
-        log: require("./components/log"),
-        status: require("./components/status"),
-        errors: require("./components/errors"),
-        "task-bar": require("./components/taskBar"),
-        "create-branch": require("./components/insets/createBranch"),
-      },
+        components: {
+          log: require("./components/log"),
+          status: require("./components/status"),
+          errors: require("./components/errors"),
+          "task-bar": require("./components/taskBar"),
+          "create-branch": require("./components/insets/createBranch"),
+        },
 
-      template: `
+        template: `
         <div id="app-root" class="foo">
           <task-bar></task-bar>
           <errors v-if="$store.getters.hasErrors"></errors>
@@ -34,8 +35,8 @@ function start(el) {
           <debugger :keepAlive="false" :components="$children" v-if="isDebug"></debugger>
         </div>
       `,
-    });
-  });
+      })
+  );
 }
 
 module.exports = { start };

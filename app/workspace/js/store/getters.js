@@ -18,7 +18,7 @@ module.exports = {
   },
 
   activeRepoName(state) {
-    const active = state.repos.find(repo => repo.path == state.activeRepo);
+    const active = state.repos.find(repo => repo.path === state.activeRepo);
     return active ? active.name : null;
   },
 };

@@ -7,7 +7,7 @@ module.exports = {
     <div class="inset create-branch">
       <div class="form">
         <input type="text" v-model="branchName" placeholder="New Branch Name" />
-        <button @click="$store.commit('clearInset')">Cancel</button> 
+        <button @click="$store.commit('clearInset')">Cancel</button>
         <button @click="createBranch">Create {{branchName}}</button>
       </div>
     </div>

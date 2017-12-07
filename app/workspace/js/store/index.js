@@ -23,7 +23,7 @@ function init() {
         localBranches: [],
       },
 
-      strict: window.ENV == "development",
+      strict: window.ENV === "development",
 
       modules: {},
       getters: require("./getters"),

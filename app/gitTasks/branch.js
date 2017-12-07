@@ -7,7 +7,10 @@ const parse = require("../util/parsing");
 
 module.exports = {
   current() {
-    return base.run(commands.branchCurrent).then(branchName => branchName.trim()).catch(err => Promise.reject(err));
+    return base
+      .run(commands.branchCurrent)
+      .then(branchName => branchName.trim())
+      .catch(err => Promise.reject(err));
   },
 
   checkout(branch) {
@@ -19,26 +22,38 @@ module.exports = {
   },
 
   remote() {
-    return base.run(commands.branchRemote).then(_parse).catch(err => Promise.reject(err));
+    return base
+      .run(commands.branchRemote)
+      .then(_parse)
+      .catch(err => Promise.reject(err));
   },
 
   default() {
     return base
       .run(commands.branchRemote)
       .then(remotes => {
-        const head = parse(remotes).split().arr.find(remote => remote.includes("HEAD"));
+        const head = parse(remotes)
+          .split()
+          .arr.find(remote => remote.includes("HEAD"));
         return head ? _getName(head) : null;
       })
       .catch(err => Promise.reject(err));
   },
 
   local() {
-    return base.run(commands.branchLocal).then(_parse).catch(err => Promise.reject(err));
+    return base
+      .run(commands.branchLocal)
+      .then(_parse)
+      .catch(err => Promise.reject(err));
   },
 };
 
 function _parse(output) {
-  return _.uniq(parse(output).split().arr.map(_getName));
+  return _.uniq(
+    parse(output)
+      .split()
+      .arr.map(_getName)
+  );
 }
 
 function _getName(branch) {
